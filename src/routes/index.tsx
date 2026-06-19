@@ -137,21 +137,21 @@ function LandingPage() {
           </div>
 
           <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1">
-            <div className="relative aspect-square w-full max-w-md mx-auto">
-              <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-brand-gradient shadow-2xl" />
-              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2.5rem] bg-white shadow-xl">
+            <div className="relative aspect-square w-full max-w-xs mx-auto">
+              <div className="absolute inset-0 rotate-3 rounded-[2rem] bg-brand-gradient shadow-2xl" />
+              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2rem] bg-white shadow-xl">
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-salmon)]/40 via-[var(--brand-bubblegum)]/30 to-[var(--brand-orange)]/40">
                   <div className="text-center">
-                    <div className="text-[8rem] leading-none">🎀</div>
-                    <p className="mt-2 font-display text-xl font-bold text-[var(--brand-pink)]">
+                    <div className="text-[6rem] leading-none">🎀</div>
+                    <p className="mt-1 font-display text-base font-bold text-[var(--brand-pink)]">
                       Atelier Strelas
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 rotate-6 rounded-2xl bg-white px-5 py-3 shadow-lg">
-                <div className="text-xs font-semibold text-foreground/60">Tema</div>
-                <div className="font-display text-lg font-bold text-[var(--brand-pink)]">Princesa Ana 🌸</div>
+              <div className="absolute -bottom-5 -right-5 rotate-6 rounded-2xl bg-white px-4 py-2 shadow-lg">
+                <div className="text-[10px] font-semibold text-foreground/60">Tema</div>
+                <div className="font-display text-sm font-bold text-[var(--brand-pink)]">Princesa Ana 🌸</div>
               </div>
             </div>
           </div>
