@@ -87,14 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Atelier Strelas — Bolsas personalizadas para festas infantis" },
       { name: "description", content: "Bolsas, mochilas e necessaires personalizadas que transformam a festa do seu filho em uma lembrança inesquecível. Atendimento em todo o Brasil." },
       { name: "author", content: "Atelier Strelas" },
-      { property: "og:title", content: "Atelier Strelas — Bolsas personalizadas para festas infantis" },
-      { property: "og:description", content: "Bolsas, mochilas e necessaires personalizadas que transformam a festa do seu filho em uma lembrança inesquecível. Atendimento em todo o Brasil." },
+      { property: "og:site_name", content: "Atelier Strelas" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Atelier Strelas — Bolsas personalizadas para festas infantis" },
-      { name: "twitter:description", content: "Bolsas, mochilas e necessaires personalizadas que transformam a festa do seu filho em uma lembrança inesquecível. Atendimento em todo o Brasil." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e7eff74-359a-4b09-be20-8f670d621af3/id-preview-4c3db1da--3814d5a8-4046-49d5-9bd2-303075e6d871.lovable.app-1781908368150.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e7eff74-359a-4b09-be20-8f670d621af3/id-preview-4c3db1da--3814d5a8-4046-49d5-9bd2-303075e6d871.lovable.app-1781908368150.png" },
     ],
     links: [
       {
@@ -102,7 +98,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Atelier Strelas",
+          url: "https://atelier-strelas.lovable.app",
+          description:
+            "Bolsas, mochilas e necessaires personalizadas feitas à mão para festas infantis.",
+          areaServed: "BR",
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -111,7 +122,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
