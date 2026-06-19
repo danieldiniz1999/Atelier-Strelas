@@ -136,12 +136,6 @@ function LoginScreen() {
             alt="Atelier Strelas"
             className="mx-auto mb-4 h-28 w-28 object-contain"
           />
-          <img
-            src={logoPrincipal.url}
-            alt=""
-            aria-hidden="true"
-            className="mx-auto mb-3 h-12 w-12 object-contain"
-          />
           <h1 className="font-display text-2xl font-extrabold">Painel Atelier Strelas</h1>
           <p className="mt-1 text-sm text-foreground/60">Acesso restrito</p>
         </div>
