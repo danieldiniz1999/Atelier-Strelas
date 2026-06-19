@@ -10,6 +10,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
             <img src={logoAsset.url} alt="Atelier Strelas" className="h-14 w-auto brightness-0 invert" />
+            <img src={seloAsset.url} alt="Selo Atelier Strelas Artes" className="h-16 w-16 rounded-full rotate-[6deg]" />
           </div>
           <p className="mt-4 text-sm text-white/75">
             Bolsas e mochilas personalizadas que transformam cada festa infantil em
