@@ -240,7 +240,7 @@ function Dashboard() {
       <header className="border-b border-border bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2 font-display text-lg font-bold">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-white">✦</span>
+            <img src={logoStrelas.url} alt="Atelier Strelas" className="h-10 w-10 object-contain" />
             Painel Strelas
           </div>
           <Button onClick={handleSignOut} variant="outline" size="sm">
