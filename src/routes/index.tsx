@@ -218,12 +218,7 @@ function LandingPage() {
       <section id="sobre" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <ScrollReveal>
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
-            <div className="relative">
-              <img
-                src={seloAsset.url}
-                alt="Selo Atelier Strelas Artes - Lembrancinhas Personalizadas"
-                className="pointer-events-none absolute -top-10 -right-4 hidden h-28 w-28 rotate-[8deg] opacity-90 md:block lg:-top-12 lg:-right-8 lg:h-36 lg:w-36"
-              />
+            <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
                 Nossa história
               </span>
@@ -248,16 +243,6 @@ function LandingPage() {
                   delas é tratada como se fosse a primeira — porque para aquela
                   família, ela é única.
                 </p>
-              </div>
-              <div className="mt-6 flex items-center gap-3 md:hidden">
-                <img
-                  src={seloAsset.url}
-                  alt="Selo Atelier Strelas"
-                  className="h-20 w-20 rotate-[6deg]"
-                />
-                <span className="text-sm font-semibold text-foreground/70">
-                  Selo oficial<br />Atelier Strelas Artes
-                </span>
               </div>
             </div>
 
