@@ -367,8 +367,8 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ScrollReveal>
             <div className="mb-12 text-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                Mamães felizes
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+                <Sparkles className="h-4 w-4" /> Mamães felizes <Sparkles className="h-4 w-4" />
               </span>
               <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
                 Quem vive a Strelas, <span className="text-brand-gradient">conta pra todo mundo</span>
