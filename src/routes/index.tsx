@@ -189,9 +189,9 @@ function LandingPage() {
                 { num: "+500", label: "Festas encantadas" },
                 { num: "+8.000", label: "Bolsinhas feitas à mão" },
                 { num: "7", label: "Anos de atelier" },
-                { num: "100%", label: "Mães que voltam a pedir" },
+                { num: "100%", label: "Mães que indicam" },
               ].map((s) => (
-                <div key={s.label} className="flex flex-col items-center">
+                <div key={s.label} className="flex h-full flex-col items-center justify-center">
                   <span className="font-display text-4xl font-extrabold leading-none sm:text-5xl">
                     {s.num}
                   </span>
