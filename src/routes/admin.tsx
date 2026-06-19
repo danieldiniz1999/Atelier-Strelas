@@ -13,6 +13,7 @@ import {
   adminDeleteProduct,
   adminListCategories,
 } from "@/lib/admin-products.functions";
+import logoPrincipal from "@/assets/logo-principal.png.asset.json";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -129,9 +130,11 @@ function LoginScreen() {
         className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl"
       >
         <div className="mb-6 text-center">
-          <div className="mx-auto mb-3 inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-gradient text-2xl text-white">
-            ✦
-          </div>
+          <img
+            src={logoPrincipal.url}
+            alt="Atelier Strelas"
+            className="mx-auto mb-3 h-16 w-16 object-contain"
+          />
           <h1 className="font-display text-2xl font-extrabold">Painel Atelier Strelas</h1>
           <p className="mt-1 text-sm text-foreground/60">Acesso restrito</p>
         </div>
