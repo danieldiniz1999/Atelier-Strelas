@@ -65,7 +65,6 @@ export function TeamSection() {
                   Chamar {s.name}
                 </a>
 
-                <span className="mt-2 text-xs text-foreground/50">{s.displayPhone}</span>
               </div>
             </ScrollReveal>
           ))}
