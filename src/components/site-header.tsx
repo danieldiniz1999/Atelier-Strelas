@@ -16,9 +16,13 @@ export function SiteHeader() {
 
   return (
     <header className="w-full border-b border-border/60 bg-background">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:h-24 sm:px-6">
         <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold" aria-label="Atelier Strelas - Início">
-          <img src={logoAsset.url} alt="Atelier Strelas" className="h-12 w-auto md:h-14" />
+          <img
+            src={logoAsset.url}
+            alt="Atelier Strelas"
+            className="h-20 w-20 rounded-full object-cover ring-4 ring-[var(--brand-pink)]/40 shadow-lg shadow-[var(--brand-pink)]/30 transition-transform duration-300 hover:scale-105 hover:rotate-3 sm:h-24 sm:w-24 md:h-28 md:w-28"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
