@@ -25,6 +25,8 @@ import { WhatsappFloat } from "@/components/whatsapp-float";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CountUp } from "@/components/count-up";
+import { TeamSection } from "@/components/team-section";
+import { SellerPickerButton } from "@/components/seller-picker";
 import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 import {
   listCategories,
@@ -272,6 +274,9 @@ function LandingPage() {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* NOSSA EQUIPE */}
+      <TeamSection />
 
       {/* CATEGORIAS */}
       <section className="bg-[var(--brand-salmon)]/15 py-20">
@@ -522,13 +527,14 @@ function LandingPage() {
               Chama a gente no WhatsApp, manda sua ideia ou inspiração — a gente
               transforma em algo único.
             </p>
-            <a
-              href="#"
+            <SellerPickerButton
+              ariaLabel="Pedir orçamento no WhatsApp"
+              message="Vim pelo site e quero um orçamento para a festa da minha criança! 🎀"
               className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-bold text-[var(--brand-pink)] shadow-lg transition-transform hover:scale-105"
             >
               Quero meu orçamento
               <ChevronRight className="h-4 w-4" />
-            </a>
+            </SellerPickerButton>
           </div>
         </ScrollReveal>
       </section>
