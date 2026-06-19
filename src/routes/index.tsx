@@ -20,6 +20,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsappFloat } from "@/components/whatsapp-float";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 import {
   listCategories,
   listFeaturedProducts,
