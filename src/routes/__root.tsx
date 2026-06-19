@@ -95,8 +95,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Atelier Strelas — Bolsas personalizadas para festas infantis" },
       { property: "og:description", content: "Bolsas, mochilas e necessaires personalizadas que transformam a festa do seu filho em uma lembrança inesquecível. Atendimento em todo o Brasil." },
       { name: "twitter:description", content: "Bolsas, mochilas e necessaires personalizadas que transformam a festa do seu filho em uma lembrança inesquecível. Atendimento em todo o Brasil." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6a4097cd-a411-42e8-80cc-9dc73af6a56b/id-preview-4c9e9195--3814d5a8-4046-49d5-9bd2-303075e6d871.lovable.app-1781910336672.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6a4097cd-a411-42e8-80cc-9dc73af6a56b/id-preview-4c9e9195--3814d5a8-4046-49d5-9bd2-303075e6d871.lovable.app-1781910336672.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/k4iGXd0KeFOBwkpNK1NHwV2NR5Y2/social-images/social-1781911092466-logo_principal_manu.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/k4iGXd0KeFOBwkpNK1NHwV2NR5Y2/social-images/social-1781911092466-logo_principal_manu.webp" },
     ],
     links: [
       {
