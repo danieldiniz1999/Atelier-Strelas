@@ -478,8 +478,8 @@ function LandingPage() {
       <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <ScrollReveal>
           <div className="mb-10 text-center">
-            <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-              Tira-dúvidas
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+              <Sparkles className="h-4 w-4" /> Tira-dúvidas <Sparkles className="h-4 w-4" />
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
               Perguntas <span className="text-brand-gradient">frequentes</span>
