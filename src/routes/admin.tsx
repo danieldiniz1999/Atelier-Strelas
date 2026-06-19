@@ -565,16 +565,39 @@ function ProductForm({
           />
           <Label htmlFor="featured">Mostrar como destaque na home</Label>
         </div>
-        <div className="flex items-center gap-2">
-          <input
-            id="active"
-            type="checkbox"
-            checked={isActive}
-            onChange={(e) => setIsActive(e.target.checked)}
-            className="h-4 w-4"
-          />
-          <Label htmlFor="active">Produto ativo (visível no site)</Label>
+        <div className="md:col-span-2">
+          <Label>Status do produto</Label>
+          <div className="mt-2 flex flex-col gap-3 rounded-xl border border-border bg-[var(--brand-salmon)]/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`inline-block h-2.5 w-2.5 rounded-full ${
+                    isActive ? "bg-green-500" : "bg-gray-400"
+                  }`}
+                />
+                <span className="font-display font-bold">
+                  {isActive ? "Ativo — visível no site" : "Desativado — oculto do site"}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-foreground/60">
+                Desative para esconder do catálogo sem excluir. Você pode reativar a qualquer momento.
+              </p>
+            </div>
+            <Button
+              type="button"
+              variant={isActive ? "outline" : "default"}
+              onClick={() => setIsActive(!isActive)}
+              className={
+                isActive
+                  ? "text-destructive hover:text-destructive"
+                  : "bg-brand-gradient text-white hover:opacity-90"
+              }
+            >
+              {isActive ? "Desativar produto" : "Ativar produto"}
+            </Button>
+          </div>
         </div>
+
         <div className="md:col-span-2 flex justify-end gap-2">
           <Button type="button" variant="outline" onClick={onClose}>Cancelar</Button>
           <Button
