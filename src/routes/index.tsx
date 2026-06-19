@@ -56,8 +56,11 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Bolsas personalizadas para festas infantis, feitas com amor.",
       },
+      { property: "og:url", content: "https://atelier-strelas.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://atelier-strelas.lovable.app/" }],
   }),
+
   loader: async ({ context }) => {
     await Promise.all([
       context.queryClient.ensureQueryData(featuredQuery),

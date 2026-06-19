@@ -19,8 +19,12 @@ import logoStrelas from "@/assets/logo-strelas.png.asset.json";
 export const Route = createFileRoute("/admin")({
   ssr: false,
   head: () => ({
-    meta: [{ title: "Painel — Atelier Strelas" }],
+    meta: [
+      { title: "Painel — Atelier Strelas" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
+
   component: AdminPage,
 });
 

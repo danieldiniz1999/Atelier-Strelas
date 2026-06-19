@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicBootstrapAdminsRouteImport } from './routes/api/public/bootstrap-admins'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogoRoute = CatalogoRouteImport.update({
   id: '/catalogo',
   path: '/catalogo',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/catalogo': typeof CatalogoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/catalogo': typeof CatalogoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
 }
 export interface FileRoutesById {
@@ -53,25 +61,50 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/catalogo': typeof CatalogoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/catalogo' | '/api/public/bootstrap-admins'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/catalogo'
+    | '/sitemap.xml'
+    | '/api/public/bootstrap-admins'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/catalogo' | '/api/public/bootstrap-admins'
-  id: '__root__' | '/' | '/admin' | '/catalogo' | '/api/public/bootstrap-admins'
+  to:
+    | '/'
+    | '/admin'
+    | '/catalogo'
+    | '/sitemap.xml'
+    | '/api/public/bootstrap-admins'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/catalogo'
+    | '/sitemap.xml'
+    | '/api/public/bootstrap-admins'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   CatalogoRoute: typeof CatalogoRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicBootstrapAdminsRoute: typeof ApiPublicBootstrapAdminsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalogo': {
       id: '/catalogo'
       path: '/catalogo'
@@ -107,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   CatalogoRoute: CatalogoRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicBootstrapAdminsRoute: ApiPublicBootstrapAdminsRoute,
 }
 export const routeTree = rootRouteImport
