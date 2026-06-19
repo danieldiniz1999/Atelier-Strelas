@@ -67,8 +67,6 @@ const TESTIMONIALS = [
   { name: "Fernanda Lopes", city: "Salvador", state: "BA", text: "Já é a terceira festa que encomendo com a Strelas. Qualidade, prazo e bom gosto são marca registrada. Virou meu xodó na hora de planejar lembrancinhas." },
   { name: "Patrícia Moreira", city: "Porto Alegre", state: "RS", text: "Cada bolsinha é uma obra de arte! As mães comentaram a festa toda. Vale cada centavo — é daquelas lembranças que ficam guardadas pra sempre." },
   { name: "Renata Sales", city: "Fortaleza", state: "CE", text: "Profissionalismo do começo ao fim. A dona é super atenciosa, tira todas as dúvidas e entrega antes do prazo. Minhas amigas estão todas pedindo o link!" },
-  { name: "Beatriz Mendonça", city: "São Paulo", state: "SP", text: "Eu queria algo único pra festa de princesa da Manu e a Strelas superou todas as expectativas. Acabamento perfeito, costura impecável, tecidos lindos." },
-  { name: "Aline Carvalho", city: "Goiânia", state: "GO", text: "Que carinho em cada peça! Dá pra sentir que é feito à mão com amor. As crianças amaram, as mães pediram bis. Atelier Strelas é referência!" },
 ];
 
 const FAQ = [
