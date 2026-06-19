@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MapPin } from "lucide-react";
 import logoAsset from "@/assets/logo-strelas.png.asset.json";
+import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 
 export function SiteFooter() {
   return (
