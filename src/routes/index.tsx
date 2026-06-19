@@ -180,6 +180,32 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* NÚMEROS MARCANTES */}
+      <section className="relative bg-brand-gradient py-14 text-white">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+              {[
+                { num: "+500", label: "Festas encantadas" },
+                { num: "+8.000", label: "Bolsinhas feitas à mão" },
+                { num: "7", label: "Anos de atelier" },
+                { num: "100%", label: "Mães que voltam a pedir" },
+              ].map((s) => (
+                <div key={s.label} className="flex flex-col items-center">
+                  <span className="font-display text-4xl font-extrabold leading-none sm:text-5xl">
+                    {s.num}
+                  </span>
+                  <span className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+
       {/* SOBRE */}
       <section id="sobre" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <ScrollReveal>
