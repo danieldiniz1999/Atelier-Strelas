@@ -4,20 +4,14 @@ interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: keyof React.JSX.IntrinsicElements;
 }
 
 /**
  * Wrap any block to fade/slide it in when it scrolls into view.
- * Triggers once (no re-animate).
+ * Triggers once.
  */
-export function ScrollReveal({
-  children,
-  delay = 0,
-  className = "",
-  as: Tag = "div",
-}: ScrollRevealProps) {
-  const ref = useRef<HTMLElement | null>(null);
+export function ScrollReveal({ children, delay = 0, className = "" }: ScrollRevealProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -39,10 +33,9 @@ export function ScrollReveal({
 
   const style: CSSProperties = delay ? { transitionDelay: `${delay}ms` } : {};
 
-  // @ts-expect-error – dynamic tag
   return (
-    <Tag ref={ref} className={`reveal ${className}`} style={style}>
+    <div ref={ref} className={`reveal ${className}`} style={style}>
       {children}
-    </Tag>
+    </div>
   );
 }
