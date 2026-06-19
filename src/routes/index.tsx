@@ -9,6 +9,10 @@ import {
   Palette,
   Star,
   ChevronRight,
+  ShieldCheck,
+  MessageCircle,
+  BadgeCheck,
+  CreditCard,
 } from "lucide-react";
 import {
   Accordion,
