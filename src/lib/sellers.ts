@@ -27,7 +27,7 @@ export const SELLERS: Seller[] = [
 ];
 
 export const DEFAULT_WPP_MESSAGE =
-  "Olá! Vim pelo site do Atelier Strelas e gostaria de saber mais sobre as bolsas personalizadas. 💕";
+  "Oiê, tudo bem? 🌸 Vim passeando pelo site do Atelier Strelas e me apaixonei pelas bolsinhas personalizadas ✨ Será que você pode me ajudar a montar uma especial pra mim? 💕";
 
 export function buildWhatsappLink(phone: string, message: string) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
