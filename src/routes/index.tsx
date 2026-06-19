@@ -187,15 +187,18 @@ function LandingPage() {
           <ScrollReveal>
             <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
               {[
-                { num: "+500", label: "Festas encantadas" },
-                { num: "+8.000", label: "Bolsinhas feitas à mão" },
-                { num: "7", label: "Anos de atelier" },
-                { num: "100%", label: "Mães que indicam" },
+                { end: 500, prefix: "+", label: "Festas encantadas" },
+                { end: 8000, prefix: "+", label: "Bolsinhas feitas à mão" },
+                { end: 7, label: "Anos de atelier" },
+                { end: 100, suffix: "%", label: "Mães que indicam" },
               ].map((s) => (
                 <div key={s.label} className="flex h-full flex-col items-center justify-center">
-                  <span className="font-display text-4xl font-extrabold leading-none sm:text-5xl">
-                    {s.num}
-                  </span>
+                  <CountUp
+                    end={s.end}
+                    prefix={s.prefix}
+                    suffix={s.suffix}
+                    className="font-display text-4xl font-extrabold leading-none sm:text-5xl"
+                  />
                   <span className="mt-2 text-sm font-semibold uppercase tracking-wider text-white/85">
                     {s.label}
                   </span>
