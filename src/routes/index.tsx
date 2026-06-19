@@ -219,8 +219,8 @@ function LandingPage() {
         <ScrollReveal>
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                Nossa história
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+                <Sparkles className="h-4 w-4" /> Nossa história <Sparkles className="h-4 w-4" />
               </span>
               <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
                 Bolsinhas que nasceram do <span className="text-brand-gradient">amor de mãe</span>
@@ -275,8 +275,8 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ScrollReveal>
             <div className="mb-10 text-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                O que criamos
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+                <Sparkles className="h-4 w-4" /> O que criamos <Sparkles className="h-4 w-4" />
               </span>
               <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
                 Para cada festa, uma <span className="text-brand-gradient">história única</span>
@@ -316,8 +316,8 @@ function LandingPage() {
         <ScrollReveal>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                Mais queridinhos
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+                <Sparkles className="h-4 w-4" /> Mais queridinhos <Sparkles className="h-4 w-4" />
               </span>
               <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
                 Destaques do <span className="text-brand-gradient">atelier</span>
@@ -478,8 +478,8 @@ function LandingPage() {
       <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <ScrollReveal>
           <div className="mb-10 text-center">
-            <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-              Tira-dúvidas
+            <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+              <Sparkles className="h-4 w-4" /> Tira-dúvidas <Sparkles className="h-4 w-4" />
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
               Perguntas <span className="text-brand-gradient">frequentes</span>
