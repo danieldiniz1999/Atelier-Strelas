@@ -266,10 +266,10 @@ function LandingPage() {
               ].map((f, i) => (
                 <div
                   key={f.title}
-                  className="rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-5 shadow-sm transition-transform hover:-translate-y-1"
+                  className="group rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20"
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
-                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white">
+                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     <f.icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-display font-bold text-foreground">{f.title}</h3>
