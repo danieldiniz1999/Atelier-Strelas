@@ -33,9 +33,16 @@ export function SiteFooter() {
               <Mail className="h-4 w-4 text-[var(--brand-bubblegum)]" />
               contato@atelierstrelas.com.br
             </li>
-            <li className="flex items-center gap-2">
-              <Instagram className="h-4 w-4 text-[var(--brand-bubblegum)]" />
-              @atelierstrelas
+            <li>
+              <a
+                href="https://www.instagram.com/atelierstrelass"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-[var(--brand-bubblegum)]"
+              >
+                <Instagram className="h-4 w-4 text-[var(--brand-bubblegum)]" />
+                @atelierstrelass
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-[var(--brand-bubblegum)]" />
