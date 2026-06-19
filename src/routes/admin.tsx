@@ -472,23 +472,83 @@ function ProductForm({
           </select>
         </div>
         <div className="md:col-span-2">
-          <Label>Imagem</Label>
-          <div className="flex items-center gap-3">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
+          <Label>Imagem do produto</Label>
+          <input
+            id="product-image-input"
+            type="file"
+            accept="image/*"
+            className="sr-only"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) handleFileUpload(f);
+              e.target.value = "";
+            }}
+          />
+          {imageUrl ? (
+            <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-border bg-secondary shadow-sm">
+                <img src={imageUrl} alt="Pré-visualização" className="h-full w-full object-cover" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={uploading}
+                  onClick={() => document.getElementById("product-image-input")?.click()}
+                >
+                  {uploading ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" /> Enviando...</>
+                  ) : (
+                    <><ImageIcon className="h-4 w-4" /> Trocar imagem</>
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setImageUrl("")}
+                  className="text-destructive hover:text-destructive"
+                >
+                  <Trash2 className="h-4 w-4" /> Remover
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <label
+              htmlFor="product-image-input"
+              onDragOver={(e) => {
+                e.preventDefault();
+                e.currentTarget.classList.add("border-[var(--brand-pink)]", "bg-[var(--brand-salmon)]/20");
+              }}
+              onDragLeave={(e) => {
+                e.currentTarget.classList.remove("border-[var(--brand-pink)]", "bg-[var(--brand-salmon)]/20");
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                e.currentTarget.classList.remove("border-[var(--brand-pink)]", "bg-[var(--brand-salmon)]/20");
+                const f = e.dataTransfer.files?.[0];
                 if (f) handleFileUpload(f);
               }}
-              className="text-sm"
-            />
-            {uploading && <Loader2 className="h-4 w-4 animate-spin" />}
-          </div>
-          {imageUrl && (
-            <div className="mt-2 h-24 w-24 overflow-hidden rounded-lg bg-secondary">
-              <img src={imageUrl} alt="" className="h-full w-full object-cover" />
-            </div>
+              className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-[var(--brand-salmon)]/5 px-6 py-8 text-center transition hover:border-[var(--brand-pink)] hover:bg-[var(--brand-salmon)]/15"
+            >
+              {uploading ? (
+                <>
+                  <Loader2 className="h-8 w-8 animate-spin text-[var(--brand-pink)]" />
+                  <span className="text-sm font-semibold text-foreground/70">Enviando imagem...</span>
+                </>
+              ) : (
+                <>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient text-white">
+                    <ImageIcon className="h-6 w-6" />
+                  </div>
+                  <span className="font-display text-sm font-bold">
+                    Clique para escolher ou arraste uma imagem
+                  </span>
+                  <span className="text-xs text-foreground/60">PNG, JPG ou WEBP — até 5MB</span>
+                </>
+              )}
+            </label>
           )}
         </div>
         <div className="flex items-center gap-2">
