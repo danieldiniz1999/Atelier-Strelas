@@ -49,7 +49,9 @@ export function TeamSection() {
                 </span>
 
                 <p className="mt-3 text-sm text-foreground/65">
-                  Cuida do seu pedido do primeiro "oi" até a bolsinha chegar na sua porta.
+                  {s.id === "dani"
+                    ? 'Cuida do seu pedido do primeiro "oi" até a bolsinha chegar na sua porta.'
+                    : "Capricha em cada detalhe pra que a sua festa fique do jeitinho que você sonhou."}
                 </p>
 
                 <a
