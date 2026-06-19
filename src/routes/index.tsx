@@ -219,8 +219,8 @@ function LandingPage() {
         <ScrollReveal>
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-orange)]">
-                Nossa história
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-sm font-extrabold uppercase tracking-[0.18em] text-white shadow-md shadow-[var(--brand-pink)]/25">
+                <Sparkles className="h-4 w-4" /> Nossa história <Sparkles className="h-4 w-4" />
               </span>
               <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
                 Bolsinhas que nasceram do <span className="text-brand-gradient">amor de mãe</span>
