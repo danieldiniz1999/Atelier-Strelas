@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/logo-strelas.png.asset.json";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
