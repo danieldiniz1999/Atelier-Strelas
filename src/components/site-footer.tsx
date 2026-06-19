@@ -47,7 +47,7 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/55 sm:flex-row sm:px-6">
-          <span>© {new Date().getFullYear()} Atelier Strelas. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} Atelier Strelas · Feito à mão, com linha, agulha e muito amor de mãe. Todos os direitos (e carinhos) reservados.</span>
           <Link to="/admin" className="hover:text-white/80">Acesso restrito</Link>
         </div>
       </div>
