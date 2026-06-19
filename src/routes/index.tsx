@@ -158,15 +158,22 @@ function LandingPage() {
 
           <div className="order-3 md:order-none md:col-start-1 md:row-start-2">
             <div className="hero-rise hero-rise-delay-3 flex flex-wrap gap-3">
+              <SellerPickerButton
+                ariaLabel="Pedir orçamento no WhatsApp"
+                message="Vim pelo site e quero um orçamento para a festa da minha criança! 🎀"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[var(--brand-pink)]/30 transition-transform hover:scale-105"
+              >
+                Pedir orçamento <MessageCircle className="h-4 w-4" />
+              </SellerPickerButton>
               <Link
                 to="/catalogo"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[var(--brand-pink)]/25 transition-transform hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-pink)] bg-white px-7 py-3.5 text-base font-bold text-[var(--brand-pink)] transition-colors hover:bg-[var(--brand-pink)] hover:text-white"
               >
                 Ver catálogo <ChevronRight className="h-4 w-4" />
               </Link>
               <a
                 href="#sobre"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-pink)] bg-white px-7 py-3.5 text-base font-bold text-[var(--brand-pink)] transition-colors hover:bg-[var(--brand-pink)] hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-base font-bold text-foreground/70 underline-offset-4 transition-colors hover:text-[var(--brand-pink)] hover:underline"
               >
                 Conheça a Strelas
               </a>
