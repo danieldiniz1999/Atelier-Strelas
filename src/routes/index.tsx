@@ -9,6 +9,10 @@ import {
   Palette,
   Star,
   ChevronRight,
+  ShieldCheck,
+  MessageCircle,
+  BadgeCheck,
+  CreditCard,
 } from "lucide-react";
 import {
   Accordion,
@@ -404,6 +408,81 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* COMPRA SEGURA / GARANTIAS */}
+      <section className="border-y border-[var(--brand-salmon)]/30 bg-white py-14">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <ScrollReveal>
+            <div className="mb-10 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--brand-bubblegum)]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[var(--brand-pink)]">
+                <ShieldCheck className="h-3.5 w-3.5" /> Compra com confiança
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
+                Sua festa nas mãos de quem <span className="text-brand-gradient">se importa</span>
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-foreground/65">
+                A gente sabe o quanto cada detalhe importa. Por isso, do primeiro
+                contato até a entrega, você tem garantia de carinho em cada etapa.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: BadgeCheck,
+                title: "Aprovação antes da produção",
+                text: "Você confirma o desenho, cores e nome. Só começamos quando estiver tudo do seu jeito.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Garantia de qualidade",
+                text: "Se chegar com qualquer problema de produção, refazemos sem custo. Simples assim.",
+              },
+              {
+                icon: CreditCard,
+                title: "Pagamento facilitado",
+                text: "PIX, transferência ou cartão parcelado em link seguro. Sinal de 50% para começar.",
+              },
+              {
+                icon: MessageCircle,
+                title: "Atendimento direto",
+                text: "Você fala direto com a dona pelo WhatsApp, do orçamento à entrega.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="group flex flex-col rounded-2xl border-2 border-[var(--brand-salmon)]/25 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20 active:scale-95"
+              >
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                  <item.icon className="h-6 w-6" />
+                </div>
+                <h3 className="font-display text-base font-bold text-foreground">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-foreground/65">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <ScrollReveal>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-foreground/65">
+              <span className="inline-flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-[var(--brand-pink)]" /> Site com conexão segura (SSL)
+              </span>
+              <span className="text-foreground/20">•</span>
+              <span className="inline-flex items-center gap-1.5">
+                <Truck className="h-4 w-4 text-[var(--brand-pink)]" /> Envio rastreado para todo o Brasil
+              </span>
+              <span className="text-foreground/20">•</span>
+              <span className="inline-flex items-center gap-1.5">
+                <Heart className="h-4 w-4 text-[var(--brand-pink)]" /> +500 mães satisfeitas
+              </span>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
 
       {/* FAQ */}
       <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
