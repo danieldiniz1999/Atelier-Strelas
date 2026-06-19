@@ -136,7 +136,7 @@ function LandingPage() {
             </p>
           </div>
 
-          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:-mt-24 lg:-mt-32">
+          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:-mt-48 lg:-mt-64">
             <div className="relative aspect-square w-full max-w-xs mx-auto">
               <div className="absolute inset-0 rotate-3 rounded-[2rem] bg-brand-gradient shadow-2xl" />
               <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2rem] bg-white shadow-xl">
