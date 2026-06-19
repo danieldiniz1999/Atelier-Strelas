@@ -266,7 +266,7 @@ function LandingPage() {
               ].map((f, i) => (
                 <div
                   key={f.title}
-                  className="group rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20"
+                  className="group cursor-pointer rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20 active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
                   style={{ transitionDelay: `${i * 60}ms` }}
                 >
                   <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
@@ -301,7 +301,7 @@ function LandingPage() {
                 <Link
                   to="/catalogo"
                   search={{ categoria: cat.slug }}
-                  className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg"
+                  className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
                 >
                   <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-2xl">
                     🎁
