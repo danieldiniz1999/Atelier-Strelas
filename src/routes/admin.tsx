@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { toast, Toaster } from "sonner";
 import { LogOut, Plus, Pencil, Trash2, Image as ImageIcon, Loader2 } from "lucide-react";
 import {
@@ -583,18 +584,11 @@ function ProductForm({
                 Desative para esconder do catálogo sem excluir. Você pode reativar a qualquer momento.
               </p>
             </div>
-            <Button
-              type="button"
-              variant={isActive ? "outline" : "default"}
-              onClick={() => setIsActive(!isActive)}
-              className={
-                isActive
-                  ? "text-destructive hover:text-destructive"
-                  : "bg-brand-gradient text-white hover:opacity-90"
-              }
-            >
-              {isActive ? "Desativar produto" : "Ativar produto"}
-            </Button>
+            <Switch
+              checked={isActive}
+              onCheckedChange={setIsActive}
+              aria-label={isActive ? "Desativar produto" : "Ativar produto"}
+            />
           </div>
         </div>
 
