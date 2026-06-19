@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MapPin } from "lucide-react";
+import logoAsset from "@/assets/logo-strelas.png.asset.json";
 
 export function SiteFooter() {
   return (
@@ -7,10 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-white shadow-md">
-              ✦
-            </span>
-            <span>Atelier Strelas</span>
+            <img src={logoAsset.url} alt="Atelier Strelas" className="h-14 w-auto brightness-0 invert" />
           </div>
           <p className="mt-4 text-sm text-white/75">
             Bolsas e mochilas personalizadas que transformam cada festa infantil em
