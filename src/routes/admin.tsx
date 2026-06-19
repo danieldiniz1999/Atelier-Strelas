@@ -14,6 +14,7 @@ import {
   adminListCategories,
 } from "@/lib/admin-products.functions";
 import logoPrincipal from "@/assets/logo-principal.png.asset.json";
+import logoStrelas from "@/assets/logo-strelas.png.asset.json";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -131,9 +132,15 @@ function LoginScreen() {
       >
         <div className="mb-6 text-center">
           <img
-            src={logoPrincipal.url}
+            src={logoStrelas.url}
             alt="Atelier Strelas"
-            className="mx-auto mb-3 h-16 w-16 object-contain"
+            className="mx-auto mb-4 h-28 w-28 object-contain"
+          />
+          <img
+            src={logoPrincipal.url}
+            alt=""
+            aria-hidden="true"
+            className="mx-auto mb-3 h-12 w-12 object-contain"
           />
           <h1 className="font-display text-2xl font-extrabold">Painel Atelier Strelas</h1>
           <p className="mt-1 text-sm text-foreground/60">Acesso restrito</p>
