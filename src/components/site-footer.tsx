@@ -41,7 +41,7 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-white/75">
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-[var(--brand-bubblegum)]" />
-              contato@atelierstrelas.com.br
+              sitestrelas@gmail.com
             </li>
             <li>
               <a
