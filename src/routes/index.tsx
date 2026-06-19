@@ -119,7 +119,7 @@ function LandingPage() {
         </div>
 
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center md:py-24">
-          <div>
+          <div className="md:col-start-1 md:row-start-1">
             <span className="hero-rise inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[var(--brand-pink)] shadow-sm">
               <Sparkles className="h-3.5 w-3.5" /> Lembrancinhas únicas
             </span>
@@ -132,7 +132,30 @@ function LandingPage() {
               tema dos sonhos da sua criança. Cada peça nasce do carinho — e vira
               memória que dura pra vida toda.
             </p>
-            <div className="hero-rise hero-rise-delay-3 mt-8 flex flex-wrap gap-3">
+          </div>
+
+          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1">
+            <div className="relative aspect-square w-full max-w-md mx-auto">
+              <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-brand-gradient shadow-2xl" />
+              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2.5rem] bg-white shadow-xl">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-salmon)]/40 via-[var(--brand-bubblegum)]/30 to-[var(--brand-orange)]/40">
+                  <div className="text-center">
+                    <div className="text-[8rem] leading-none">🎀</div>
+                    <p className="mt-2 font-display text-xl font-bold text-[var(--brand-pink)]">
+                      Atelier Strelas
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 rotate-6 rounded-2xl bg-white px-5 py-3 shadow-lg">
+                <div className="text-xs font-semibold text-foreground/60">Tema</div>
+                <div className="font-display text-lg font-bold text-[var(--brand-pink)]">Princesa Ana 🌸</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="order-3 md:order-none md:col-start-1 md:row-start-2">
+            <div className="hero-rise hero-rise-delay-3 flex flex-wrap gap-3">
               <Link
                 to="/catalogo"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[var(--brand-pink)]/25 transition-transform hover:scale-105"
@@ -159,26 +182,6 @@ function LandingPage() {
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-[var(--brand-pink)]" />
                 +500 festas encantadas
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-rise hero-rise-delay-2 relative">
-            <div className="relative aspect-square w-full max-w-md mx-auto">
-              <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-brand-gradient shadow-2xl" />
-              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2.5rem] bg-white shadow-xl">
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-salmon)]/40 via-[var(--brand-bubblegum)]/30 to-[var(--brand-orange)]/40">
-                  <div className="text-center">
-                    <div className="text-[8rem] leading-none">🎀</div>
-                    <p className="mt-2 font-display text-xl font-bold text-[var(--brand-pink)]">
-                      Atelier Strelas
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 rotate-6 rounded-2xl bg-white px-5 py-3 shadow-lg">
-                <div className="text-xs font-semibold text-foreground/60">Tema</div>
-                <div className="font-display text-lg font-bold text-[var(--brand-pink)]">Princesa Ana 🌸</div>
               </div>
             </div>
           </div>
