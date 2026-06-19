@@ -136,7 +136,7 @@ function LandingPage() {
             </p>
           </div>
 
-          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:-mt-10 lg:-mt-16">
+          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:-mt-24 lg:-mt-32">
             <div className="relative aspect-square w-full max-w-xs mx-auto">
               <div className="absolute inset-0 rotate-3 rounded-[2rem] bg-brand-gradient shadow-2xl" />
               <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2rem] bg-white shadow-xl">
@@ -173,7 +173,7 @@ function LandingPage() {
               </Link>
               <a
                 href="#sobre"
-                className="inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-base font-bold text-foreground/70 underline-offset-4 transition-colors hover:text-[var(--brand-pink)] hover:underline"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-salmon)] bg-white px-7 py-3.5 text-base font-bold text-foreground/75 transition-colors hover:border-[var(--brand-pink)] hover:text-[var(--brand-pink)]"
               >
                 Conheça a Strelas
               </a>
