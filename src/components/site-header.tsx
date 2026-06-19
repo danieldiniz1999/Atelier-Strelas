@@ -31,6 +31,15 @@ export function SiteHeader() {
               {l.label}
             </a>
           ))}
+          <a
+            href="https://www.instagram.com/atelierstrelass"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram do Atelier Strelas"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-gradient text-white shadow-sm transition-transform hover:scale-110"
+          >
+            <Instagram className="h-4 w-4" />
+          </a>
         </nav>
 
         <button
