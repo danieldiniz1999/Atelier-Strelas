@@ -62,9 +62,6 @@ export function GallerySection() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <figcaption className="px-2 py-2 text-center text-[11px] font-semibold leading-tight text-foreground/70">
-                      {p.caption}
-                    </figcaption>
                   </figure>
                 </CarouselItem>
               ))}
