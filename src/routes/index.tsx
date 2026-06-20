@@ -254,7 +254,7 @@ function LandingPage() {
                   todos os convidados vão embora sorrindo, com algo lindo na mão.
                 </p>
                 <p>
-                  Mais de 500 festas já passaram pelo nosso atelier. E cada uma
+                  Mais de 1500 festas já passaram pelo nosso atelier. E cada uma
                   delas é tratada como se fosse a primeira — porque para aquela
                   família, ela é única.
                 </p>
