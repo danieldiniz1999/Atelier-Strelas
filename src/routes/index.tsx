@@ -193,7 +193,7 @@ function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-[var(--brand-pink)]" />
-                +500 festas encantadas
+                +1500 festas encantadas
               </div>
             </div>
           </div>
@@ -206,9 +206,9 @@ function LandingPage() {
           <ScrollReveal>
             <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
               {[
-                { end: 500, prefix: "+", label: "Festas encantadas" },
-                { end: 8000, prefix: "+", label: "Bolsinhas feitas à mão" },
-                { end: 7, label: "Anos de atelier" },
+                { end: 1500, prefix: "+", label: "Festas encantadas" },
+                { end: 20000, prefix: "+", label: "Bolsas personalizadas feitas à mão" },
+                { end: 11, label: "Anos de atelier" },
                 { end: 100, suffix: "%", label: "Mães que indicam" },
               ].map((s) => (
                 <div key={s.label} className="flex h-full flex-col items-center justify-center">
@@ -254,7 +254,7 @@ function LandingPage() {
                   todos os convidados vão embora sorrindo, com algo lindo na mão.
                 </p>
                 <p>
-                  Mais de 500 festas já passaram pelo nosso atelier. E cada uma
+                  Mais de 1500 festas já passaram pelo nosso atelier. E cada uma
                   delas é tratada como se fosse a primeira — porque para aquela
                   família, ela é única.
                 </p>
@@ -484,7 +484,7 @@ function LandingPage() {
               </span>
               <span className="text-foreground/20">•</span>
               <span className="inline-flex items-center gap-1.5">
-                <Heart className="h-4 w-4 text-[var(--brand-pink)]" /> +500 mães satisfeitas
+                <Heart className="h-4 w-4 text-[var(--brand-pink)]" /> +1500 mães satisfeitas
               </span>
             </div>
           </ScrollReveal>
