@@ -186,6 +186,7 @@ type Product = {
   description: string | null;
   price: number | null;
   image_url: string | null;
+  image_urls: string[] | null;
   category_id: string | null;
   is_featured: boolean;
   is_active: boolean;
