@@ -265,23 +265,24 @@ function LandingPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {[
                 { icon: Heart, title: "Feito à mão", text: "Cada peça é única, sem produção em série." },
                 { icon: Palette, title: "Personalizado", text: "Tema, cores e nome a seu gosto." },
                 { icon: Gift, title: "Embalagem caprichada", text: "Pronto para entregar e encantar." },
                 { icon: Star, title: "Qualidade premium", text: "Tecidos selecionados, costura impecável." },
-              ].map((f, i) => (
+              ].map((f) => (
                 <div
                   key={f.title}
-                  className="group cursor-pointer rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20 active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
-                  style={{ transitionDelay: `${i * 60}ms` }}
+                  className="group flex min-w-0 cursor-pointer items-start gap-3 rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/20 active:scale-95 sm:flex-col sm:items-stretch sm:gap-0 sm:p-5"
                 >
-                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                  <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 sm:mb-3">
                     <f.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display font-bold text-foreground">{f.title}</h3>
-                  <p className="mt-1 text-sm text-foreground/65">{f.text}</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-display font-bold text-foreground">{f.title}</h3>
+                    <p className="mt-1 text-sm text-foreground/65">{f.text}</p>
+                  </div>
                 </div>
               ))}
             </div>
