@@ -20,6 +20,7 @@ export const SELLERS: Seller[] = [
     phone: "5585987752593",
     displayPhone: "(85) 98775-2593",
     initials: "D",
+    photoUrl: daniAsset.url,
   },
   {
     id: "bia",
