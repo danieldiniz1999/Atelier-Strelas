@@ -206,9 +206,9 @@ function LandingPage() {
           <ScrollReveal>
             <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
               {[
-                { end: 500, prefix: "+", label: "Festas encantadas" },
-                { end: 8000, prefix: "+", label: "Bolsinhas feitas à mão" },
-                { end: 7, label: "Anos de atelier" },
+                { end: 1500, prefix: "+", label: "Festas encantadas" },
+                { end: 20000, prefix: "+", label: "Bolsas personalizadas feitas à mão" },
+                { end: 11, label: "Anos de atelier" },
                 { end: 100, suffix: "%", label: "Mães que indicam" },
               ].map((s) => (
                 <div key={s.label} className="flex h-full flex-col items-center justify-center">
