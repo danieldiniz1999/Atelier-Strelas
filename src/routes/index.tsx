@@ -193,7 +193,7 @@ function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-[var(--brand-pink)]" />
-                +500 festas encantadas
+                +1500 festas encantadas
               </div>
             </div>
           </div>
