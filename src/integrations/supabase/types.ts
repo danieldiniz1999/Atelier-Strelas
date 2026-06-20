@@ -52,6 +52,7 @@ export type Database = {
           display_order: number
           id: string
           image_url: string | null
+          image_urls: string[]
           is_active: boolean
           is_featured: boolean
           name: string
@@ -65,6 +66,7 @@ export type Database = {
           display_order?: number
           id?: string
           image_url?: string | null
+          image_urls?: string[]
           is_active?: boolean
           is_featured?: boolean
           name: string
@@ -78,6 +80,7 @@ export type Database = {
           display_order?: number
           id?: string
           image_url?: string | null
+          image_urls?: string[]
           is_active?: boolean
           is_featured?: boolean
           name?: string
