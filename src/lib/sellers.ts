@@ -1,12 +1,15 @@
 // Dados das vendedoras do Atelier Strelas.
 // Os números são no formato internacional (55 + DDD + número) para o link do WhatsApp.
 
+import biaAsset from "@/assets/bia.jpeg.asset.json";
+
 export type Seller = {
   id: string;
   name: string;
   phone: string; // formato wa.me, só dígitos
   initials: string;
   displayPhone: string;
+  photoUrl?: string;
 };
 
 export const SELLERS: Seller[] = [
@@ -23,6 +26,7 @@ export const SELLERS: Seller[] = [
     phone: "5585921440297",
     displayPhone: "(85) 92144-0297",
     initials: "B",
+    photoUrl: biaAsset.url,
   },
 ];
 

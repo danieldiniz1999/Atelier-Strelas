@@ -35,8 +35,12 @@ export function TeamSection() {
               <div className="group flex h-full flex-col items-center rounded-3xl border-2 border-[var(--brand-salmon)]/30 bg-white p-7 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-xl hover:shadow-[var(--brand-pink)]/15">
                 <div className="relative">
                   <div className="absolute inset-0 -m-1 rounded-full bg-brand-gradient opacity-70 blur-md transition-opacity group-hover:opacity-100" />
-                  <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-brand-gradient font-display text-5xl font-extrabold text-white shadow-lg ring-4 ring-white">
-                    {s.initials}
+                  <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-brand-gradient font-display text-5xl font-extrabold text-white shadow-lg ring-4 ring-white">
+                    {s.photoUrl ? (
+                      <img src={s.photoUrl} alt={s.name} className="h-full w-full object-cover" />
+                    ) : (
+                      s.initials
+                    )}
                   </div>
                 </div>
 
