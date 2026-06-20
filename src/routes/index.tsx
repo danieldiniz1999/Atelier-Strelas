@@ -28,6 +28,7 @@ import { CountUp } from "@/components/count-up";
 import { TeamSection } from "@/components/team-section";
 import { GallerySection } from "@/components/gallery-section";
 import { SellerPickerButton } from "@/components/seller-picker";
+import heroFesta from "@/assets/hero-festa.jpeg.asset.json";
 import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 import {
   listCategories,
@@ -144,18 +145,11 @@ function LandingPage() {
             <div className="relative aspect-square w-full max-w-[200px] sm:max-w-xs mx-auto">
               <div className="absolute inset-0 rotate-3 rounded-[2rem] bg-brand-gradient shadow-2xl" />
               <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2rem] bg-white shadow-xl">
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-salmon)]/40 via-[var(--brand-bubblegum)]/30 to-[var(--brand-orange)]/40">
-                  <div className="text-center">
-                    <div className="text-[6rem] leading-none">🎀</div>
-                    <p className="mt-1 font-display text-base font-bold text-[var(--brand-pink)]">
-                      Atelier Strelas
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-5 -right-5 rotate-6 rounded-2xl bg-white px-4 py-2 shadow-lg">
-                <div className="text-[10px] font-semibold text-foreground/60">Tema</div>
-                <div className="font-display text-sm font-bold text-[var(--brand-pink)]">Princesa Ana 🌸</div>
+                <img
+                  src={heroFesta.url}
+                  alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
           </div>
