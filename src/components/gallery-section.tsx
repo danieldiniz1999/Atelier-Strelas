@@ -51,10 +51,10 @@ export function GallerySection() {
               {PHOTOS.map((p, i) => (
                 <CarouselItem
                   key={i}
-                  className="pl-4 sm:basis-1/2 lg:basis-1/3"
+                  className="pl-3 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                 >
-                  <figure className="group overflow-hidden rounded-3xl border-2 border-[var(--brand-salmon)]/30 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-xl hover:shadow-[var(--brand-pink)]/15">
-                    <div className="aspect-[4/5] overflow-hidden">
+                  <figure className="group overflow-hidden rounded-2xl border border-[var(--brand-salmon)]/30 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/15">
+                    <div className="aspect-square overflow-hidden">
                       <img
                         src={p.url}
                         alt={p.caption}
@@ -62,7 +62,7 @@ export function GallerySection() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <figcaption className="px-4 py-3 text-center text-sm font-semibold text-foreground/75">
+                    <figcaption className="px-2 py-2 text-center text-[11px] font-semibold leading-tight text-foreground/70">
                       {p.caption}
                     </figcaption>
                   </figure>
