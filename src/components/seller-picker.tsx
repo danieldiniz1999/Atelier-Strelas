@@ -67,8 +67,17 @@ export function SellerPickerButton({
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-4 rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-pink)] hover:shadow-md active:scale-[0.98]"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-lg font-bold text-white shadow-md">
-                  {s.initials}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-gradient text-lg font-bold text-white shadow-md">
+                  {s.photoUrl ? (
+                    <img
+                      src={s.photoUrl}
+                      alt={s.name}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    s.initials
+                  )}
                 </div>
                 <div className="flex-1 text-left">
                   <div className="font-display text-base font-bold text-foreground">
