@@ -382,34 +382,69 @@ function ProductForm({
   onSaved: () => void;
 }) {
   const upsertFn = useServerFn(adminUpsertProduct);
+  const MAX_IMAGES = 5;
+  const initialImages = (() => {
+    if (product?.image_urls && product.image_urls.length > 0) return product.image_urls;
+    if (product?.image_url) return [product.image_url];
+    return [] as string[];
+  })();
   const [name, setName] = useState(product?.name ?? "");
   const [description, setDescription] = useState(product?.description ?? "");
   const [price, setPrice] = useState(product?.price?.toString() ?? "");
-  const [imageUrl, setImageUrl] = useState(product?.image_url ?? "");
+  const [images, setImages] = useState<string[]>(initialImages);
   const [categoryId, setCategoryId] = useState(product?.category_id ?? "");
   const [isFeatured, setIsFeatured] = useState(product?.is_featured ?? false);
   const [isActive, setIsActive] = useState(product?.is_active ?? true);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  async function handleFileUpload(file: File) {
+  async function handleFilesUpload(files: FileList | File[]) {
+    const list = Array.from(files);
+    if (list.length === 0) return;
+    const remaining = MAX_IMAGES - images.length;
+    if (remaining <= 0) {
+      toast.error(`Máximo de ${MAX_IMAGES} imagens por produto.`);
+      return;
+    }
+    const toUpload = list.slice(0, remaining);
+    if (list.length > remaining) {
+      toast.message(`Você enviou ${list.length} arquivos, mas só ${remaining} couberam (limite ${MAX_IMAGES}).`);
+    }
     setUploading(true);
     try {
-      const ext = file.name.split(".").pop() ?? "jpg";
-      const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { error } = await supabase.storage.from("products").upload(path, file, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-      if (error) throw error;
-      const { data } = await supabase.storage.from("products").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
-      if (data?.signedUrl) setImageUrl(data.signedUrl);
-      toast.success("Imagem enviada!");
+      const uploaded: string[] = [];
+      for (const file of toUpload) {
+        const ext = file.name.split(".").pop() ?? "jpg";
+        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+        const { error } = await supabase.storage.from("products").upload(path, file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+        if (error) throw error;
+        const { data } = await supabase.storage.from("products").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
+        if (data?.signedUrl) uploaded.push(data.signedUrl);
+      }
+      setImages((prev) => [...prev, ...uploaded].slice(0, MAX_IMAGES));
+      toast.success(uploaded.length === 1 ? "Imagem enviada!" : `${uploaded.length} imagens enviadas!`);
     } catch (e: any) {
       toast.error(e.message ?? "Falha ao enviar imagem.");
     } finally {
       setUploading(false);
     }
+  }
+
+  function removeImage(index: number) {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function makeCover(index: number) {
+    setImages((prev) => {
+      if (index <= 0 || index >= prev.length) return prev;
+      const copy = [...prev];
+      const [chosen] = copy.splice(index, 1);
+      copy.unshift(chosen);
+      return copy;
+    });
   }
 
   async function handleSave(e: React.FormEvent) {
@@ -422,7 +457,8 @@ function ProductForm({
           name,
           description: description || null,
           price: price ? Number(price) : null,
-          image_url: imageUrl || null,
+          image_url: images[0] ?? null,
+          image_urls: images,
           category_id: categoryId || null,
           is_featured: isFeatured,
           is_active: isActive,
