@@ -484,7 +484,7 @@ function LandingPage() {
               </span>
               <span className="text-foreground/20">•</span>
               <span className="inline-flex items-center gap-1.5">
-                <Heart className="h-4 w-4 text-[var(--brand-pink)]" /> +500 mães satisfeitas
+                <Heart className="h-4 w-4 text-[var(--brand-pink)]" /> +1500 mães satisfeitas
               </span>
             </div>
           </ScrollReveal>
