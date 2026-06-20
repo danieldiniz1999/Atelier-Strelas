@@ -28,6 +28,7 @@ import { CountUp } from "@/components/count-up";
 import { TeamSection } from "@/components/team-section";
 import { GallerySection } from "@/components/gallery-section";
 import { SellerPickerButton } from "@/components/seller-picker";
+import heroFesta from "@/assets/hero-festa.jpeg.asset.json";
 import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 import {
   listCategories,
