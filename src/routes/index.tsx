@@ -367,9 +367,9 @@ function LandingPage() {
             </div>
           </ScrollReveal>
         ) : (
-          <div className="mx-auto grid max-w-5xl gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-            {featured.products.map((p, i) => (
-              <ScrollReveal key={p.id} delay={i * 80}>
+          <div className="mx-auto grid max-w-4xl gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {featured.products.slice(0, 6).map((p, i) => (
+              <ScrollReveal key={p.id} delay={i * 60}>
                 <ProductCard product={p} />
               </ScrollReveal>
             ))}
@@ -570,7 +570,7 @@ function ProductCard({
   };
 }) {
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
       <div className="aspect-square overflow-hidden bg-[var(--brand-salmon)]/15">
         {product.image_url ? (
           <img
@@ -580,18 +580,13 @@ function ProductCard({
             loading="lazy"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-6xl">🎀</div>
+          <div className="flex h-full w-full items-center justify-center text-4xl">🎀</div>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="font-display font-bold text-foreground">{product.name}</h3>
-        {product.description && (
-          <p className="mt-1 line-clamp-2 text-sm text-foreground/60">
-            {product.description}
-          </p>
-        )}
+      <div className="flex flex-1 flex-col p-2.5">
+        <h3 className="font-display text-xs font-bold leading-tight text-foreground line-clamp-2">{product.name}</h3>
         {product.price !== null && product.price !== undefined && (
-          <div className="mt-3 font-display font-bold text-[var(--brand-pink)]">
+          <div className="mt-1.5 font-display text-sm font-bold text-[var(--brand-pink)]">
             R$ {Number(product.price).toFixed(2).replace(".", ",")}
           </div>
         )}
