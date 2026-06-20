@@ -106,6 +106,18 @@
 @layer base {
   * { border-color: var(--color-border); }
 
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href],
+  summary,
+  label[for],
+  select:not(:disabled),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled) {
+    cursor: pointer;
+  }
+
   html { scroll-behavior: smooth; }
 
   body {
