@@ -98,7 +98,7 @@ const FAQ = [
   },
   {
     q: "Como funciona a personalização com o nome do aniversariante?",
-    a: "Cada bolsa pode receber o nome, idade ou frase escolhida por você, bordada ou aplicada no tecido. Tudo é confirmado antes da produção começar.",
+    a: "Cada pedido você pode personalizar colocando nome, idade, data ou uma frase escolhida por você, aplicada no tecido. Tudo é aprovado antes da produção iniciar.",
   },
   {
     q: "Quais formas de pagamento vocês aceitam?",
