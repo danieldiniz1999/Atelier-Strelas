@@ -445,7 +445,7 @@ function LandingPage() {
               {
                 icon: ShieldCheck,
                 title: "Garantia de qualidade",
-                text: "Você confirma a arte, cores das bolsas e quantidade para meninos e meninas antes da produção das bolsinhas. Só iniciamos quando estiver tudo do seu jeito.",
+                text: "Todo pedido é confirmado antes da produção, com a sua participação verificando a arte nos detalhes, concerteza confeccionaremos o pedido com perfeição 😍.",
               },
               {
                 icon: CreditCard,
