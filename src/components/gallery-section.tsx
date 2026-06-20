@@ -47,7 +47,7 @@ export function GallerySection() {
             opts={{ align: "start", loop: true }}
             className="mx-auto w-full"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-3">
               {PHOTOS.map((p, i) => (
                 <CarouselItem
                   key={i}
