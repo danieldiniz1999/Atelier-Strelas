@@ -8,6 +8,7 @@ const productInput = z.object({
   description: z.string().optional().nullable(),
   price: z.number().nullable().optional(),
   image_url: z.string().url().nullable().optional(),
+  image_urls: z.array(z.string().url()).max(5).optional(),
   category_id: z.string().uuid().nullable().optional(),
   is_featured: z.boolean().optional(),
   is_active: z.boolean().optional(),
