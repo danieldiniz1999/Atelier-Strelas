@@ -26,6 +26,9 @@ const PHOTOS: { url: string; caption: string }[] = [
 ];
 
 export function GallerySection() {
+  const autoplay = useRef(
+    Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true }),
+  );
   return (
     <section id="galeria" className="bg-[var(--brand-cream)]/40 py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
