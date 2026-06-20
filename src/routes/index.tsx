@@ -445,7 +445,7 @@ function LandingPage() {
               {
                 icon: ShieldCheck,
                 title: "Garantia de qualidade",
-                text: "Se chegar com qualquer problema de produção, refazemos sem custo. Simples assim.",
+                text: "Você confirma a arte, cores das bolsas e quantidade para meninos e meninas antes da produção das bolsinhas. Só iniciamos quando estiver tudo do seu jeito.",
               },
               {
                 icon: CreditCard,
