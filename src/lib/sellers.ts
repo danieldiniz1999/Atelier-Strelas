@@ -2,6 +2,7 @@
 // Os números são no formato internacional (55 + DDD + número) para o link do WhatsApp.
 
 import biaAsset from "@/assets/bia.jpeg.asset.json";
+import daniAsset from "@/assets/dani.jpeg.asset.json";
 
 export type Seller = {
   id: string;
@@ -19,6 +20,7 @@ export const SELLERS: Seller[] = [
     phone: "5585987752593",
     displayPhone: "(85) 98775-2593",
     initials: "D",
+    photoUrl: daniAsset.url,
   },
   {
     id: "bia",
