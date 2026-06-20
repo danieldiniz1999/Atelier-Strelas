@@ -50,6 +50,7 @@ export function GallerySection() {
         <ScrollReveal>
           <Carousel
             opts={{ align: "start", loop: true }}
+            plugins={[autoplay.current]}
             className="mx-auto w-full"
           >
             <CarouselContent className="-ml-3">
