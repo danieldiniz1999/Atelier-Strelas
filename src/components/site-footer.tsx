@@ -54,9 +54,16 @@ export function SiteFooter() {
                 @atelierstrelass
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-[var(--brand-bubblegum)]" />
-              Atendemos todo o Brasil
+            <li>
+              <a
+                href="https://wa.me/5585987773944?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Atelier%20Strelas%20e%20gostaria%20de%20um%20atendimento%20%F0%9F%92%95"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-[var(--brand-bubblegum)]"
+              >
+                <MessageCircle className="h-4 w-4 text-[var(--brand-bubblegum)]" />
+                Atendimento ao cliente
+              </a>
             </li>
           </ul>
         </div>
