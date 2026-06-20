@@ -455,7 +455,7 @@ function LandingPage() {
               {
                 icon: MessageCircle,
                 title: "Atendimento direto",
-                text: "Você fala direto com a dona pelo WhatsApp, do orçamento à entrega.",
+                text: "Você fala direto com a design que confeccionará sua arte de acordo com sua imaginação.",
               },
             ].map((item) => (
               <div
