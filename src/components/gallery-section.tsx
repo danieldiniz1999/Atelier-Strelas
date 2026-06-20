@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { Sparkles } from "lucide-react";
 import {
   Carousel,
