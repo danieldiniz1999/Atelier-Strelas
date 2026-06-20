@@ -54,7 +54,7 @@ export function GallerySection() {
                   className="pl-3 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                 >
                   <figure className="group overflow-hidden rounded-2xl border border-[var(--brand-salmon)]/30 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/15">
-                    <div className="aspect-square overflow-hidden">
+                    <div className="aspect-[4/5] overflow-hidden bg-[var(--brand-cream)]/50">
                       <img
                         src={p.url}
                         alt={p.caption}
