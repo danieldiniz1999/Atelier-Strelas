@@ -514,49 +514,61 @@ function ProductForm({
           </select>
         </div>
         <div className="md:col-span-2">
-          <Label>Imagem do produto</Label>
+          <Label>Imagens do produto (até {MAX_IMAGES})</Label>
+          <p className="mt-1 text-xs text-foreground/60">
+            A primeira imagem é a capa exibida no site. Você pode reordenar definindo outra como capa.
+          </p>
           <input
             id="product-image-input"
             type="file"
             accept="image/*"
+            multiple
             className="sr-only"
             onChange={(e) => {
-              const f = e.target.files?.[0];
-              if (f) handleFileUpload(f);
+              const f = e.target.files;
+              if (f && f.length > 0) handleFilesUpload(f);
               e.target.value = "";
             }}
           />
-          {imageUrl ? (
-            <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl border border-border bg-secondary shadow-sm">
-                <img src={imageUrl} alt="Pré-visualização" className="h-full w-full object-cover" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={uploading}
-                  onClick={() => document.getElementById("product-image-input")?.click()}
+
+          {images.length > 0 && (
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+              {images.map((url, idx) => (
+                <div
+                  key={url + idx}
+                  className="group relative aspect-square overflow-hidden rounded-xl border border-border bg-secondary shadow-sm"
                 >
-                  {uploading ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" /> Enviando...</>
-                  ) : (
-                    <><ImageIcon className="h-4 w-4" /> Trocar imagem</>
+                  <img src={url} alt={`Imagem ${idx + 1}`} className="h-full w-full object-cover" />
+                  {idx === 0 && (
+                    <span className="absolute left-1.5 top-1.5 rounded-full bg-brand-gradient px-2 py-0.5 text-[10px] font-bold text-white shadow">
+                      Capa
+                    </span>
                   )}
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setImageUrl("")}
-                  className="text-destructive hover:text-destructive"
-                >
-                  <Trash2 className="h-4 w-4" /> Remover
-                </Button>
-              </div>
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-1 bg-black/55 px-1.5 py-1 opacity-0 transition group-hover:opacity-100">
+                    {idx > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => makeCover(idx)}
+                        className="rounded px-1.5 py-0.5 text-[10px] font-bold text-white hover:bg-white/15"
+                      >
+                        Tornar capa
+                      </button>
+                    ) : <span />}
+                    <button
+                      type="button"
+                      onClick={() => removeImage(idx)}
+                      aria-label="Remover imagem"
+                      className="rounded p-1 text-white hover:bg-white/15"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
+          )}
+
+          {images.length < MAX_IMAGES && (
             <label
               htmlFor="product-image-input"
               onDragOver={(e) => {
@@ -569,28 +581,36 @@ function ProductForm({
               onDrop={(e) => {
                 e.preventDefault();
                 e.currentTarget.classList.remove("border-[var(--brand-pink)]", "bg-[var(--brand-salmon)]/20");
-                const f = e.dataTransfer.files?.[0];
-                if (f) handleFileUpload(f);
+                const f = e.dataTransfer.files;
+                if (f && f.length > 0) handleFilesUpload(f);
               }}
-              className="mt-2 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-[var(--brand-salmon)]/5 px-6 py-8 text-center transition hover:border-[var(--brand-pink)] hover:bg-[var(--brand-salmon)]/15"
+              className="mt-3 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-[var(--brand-salmon)]/5 px-6 py-6 text-center transition hover:border-[var(--brand-pink)] hover:bg-[var(--brand-salmon)]/15"
             >
               {uploading ? (
                 <>
-                  <Loader2 className="h-8 w-8 animate-spin text-[var(--brand-pink)]" />
-                  <span className="text-sm font-semibold text-foreground/70">Enviando imagem...</span>
+                  <Loader2 className="h-7 w-7 animate-spin text-[var(--brand-pink)]" />
+                  <span className="text-sm font-semibold text-foreground/70">Enviando imagens...</span>
                 </>
               ) : (
                 <>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient text-white">
-                    <ImageIcon className="h-6 w-6" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-gradient text-white">
+                    <ImageIcon className="h-5 w-5" />
                   </div>
                   <span className="font-display text-sm font-bold">
-                    Clique para escolher ou arraste uma imagem
+                    {images.length === 0
+                      ? "Clique ou arraste para enviar imagens"
+                      : `Adicionar mais (${MAX_IMAGES - images.length} restante${MAX_IMAGES - images.length === 1 ? "" : "s"})`}
                   </span>
-                  <span className="text-xs text-foreground/60">PNG, JPG ou WEBP — até 5MB</span>
+                  <span className="text-xs text-foreground/60">PNG, JPG ou WEBP — você pode selecionar várias de uma vez</span>
                 </>
               )}
             </label>
+          )}
+
+          {images.length >= MAX_IMAGES && (
+            <p className="mt-3 rounded-lg bg-[var(--brand-salmon)]/15 px-3 py-2 text-xs font-semibold text-foreground/70">
+              Limite de {MAX_IMAGES} imagens atingido. Remova alguma para adicionar outra.
+            </p>
           )}
         </div>
         <div className="flex items-center gap-2">
