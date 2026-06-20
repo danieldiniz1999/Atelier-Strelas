@@ -26,6 +26,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CountUp } from "@/components/count-up";
 import { TeamSection } from "@/components/team-section";
+import { GallerySection } from "@/components/gallery-section";
 import { SellerPickerButton } from "@/components/seller-picker";
 import seloAsset from "@/assets/selo-strelas.jpg.asset.json";
 import {
@@ -227,6 +228,9 @@ function LandingPage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <GallerySection />
+
 
 
       {/* SOBRE */}
