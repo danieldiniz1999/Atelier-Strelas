@@ -149,6 +149,8 @@ function LandingPage() {
                   src={heroFesta.url}
                   alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
                   className="h-full w-full object-cover"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -416,6 +418,8 @@ function LandingPage() {
         <img
           src={seloAsset.url}
           alt="Selo oficial Atelier Strelas Artes"
+          loading="lazy"
+          decoding="async"
           className="pointer-events-none absolute right-4 top-6 h-20 w-20 rotate-[8deg] opacity-90 sm:right-8 sm:top-8 sm:h-28 sm:w-28 md:right-12 md:h-32 md:w-32"
         />
         <div className="mx-auto max-w-6xl px-4 sm:px-6">

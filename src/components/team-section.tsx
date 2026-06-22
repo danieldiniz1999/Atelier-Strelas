@@ -37,7 +37,7 @@ export function TeamSection() {
                   <div className="absolute inset-0 -m-1 rounded-full bg-brand-gradient opacity-70 blur-md transition-opacity group-hover:opacity-100" />
                   <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-brand-gradient font-display text-5xl font-extrabold text-white shadow-lg ring-4 ring-white">
                     {s.photoUrl ? (
-                      <img src={s.photoUrl} alt={s.name} className="h-full w-full object-cover" />
+                      <img src={s.photoUrl} alt={s.name} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                     ) : (
                       s.initials
                     )}
