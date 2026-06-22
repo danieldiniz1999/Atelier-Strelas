@@ -290,8 +290,8 @@ function Dashboard() {
             Nenhum produto cadastrado. Clique em "Novo produto" para começar.
           </div>
         ) : (
-          <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto rounded-2xl bg-white shadow-sm">
+            <table className="w-full min-w-[640px] text-sm">
               <thead className="bg-[var(--brand-salmon)]/15 text-left">
                 <tr>
                   <th className="px-4 py-3 font-display font-bold">Produto</th>
