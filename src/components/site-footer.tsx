@@ -12,11 +12,15 @@ export function SiteFooter() {
             <img
               src={logoAsset.url}
               alt="Atelier Strelas"
+              loading="lazy"
+              decoding="async"
               className="h-20 w-20 rounded-full bg-white object-cover p-1 shadow-md ring-2 ring-white/15"
             />
             <img
               src={seloAsset.url}
               alt="Selo Atelier Strelas Artes"
+              loading="lazy"
+              decoding="async"
               className="h-20 w-20 rounded-full object-cover shadow-md ring-2 ring-white/15"
             />
           </div>
