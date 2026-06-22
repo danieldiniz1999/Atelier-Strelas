@@ -149,6 +149,8 @@ function LandingPage() {
                   src={heroFesta.url}
                   alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
                   className="h-full w-full object-cover"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </div>
