@@ -99,10 +99,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/k4iGXd0KeFOBwkpNK1NHwV2NR5Y2/social-images/social-1781911092466-logo_principal_manu.webp" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://oayibexbrterqedjnway.supabase.co", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://oayibexbrterqedjnway.supabase.co" },
     ],
     scripts: [
       {
