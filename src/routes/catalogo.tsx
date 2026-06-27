@@ -10,6 +10,7 @@ import {
   listCategories,
   listAllActiveProducts,
 } from "@/lib/products.functions";
+import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
 
 const searchSchema = z.object({
   categoria: z.string().optional(),
