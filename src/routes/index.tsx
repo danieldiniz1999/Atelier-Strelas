@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import {
@@ -573,10 +574,15 @@ function ProductCard({
       <div className="aspect-square overflow-hidden bg-[var(--brand-salmon)]/15">
         {product.image_url ? (
           <img
-            src={product.image_url}
+            src={optimizedImage(product.image_url, { width: 400, quality: 70 })}
+            srcSet={optimizedSrcSet(product.image_url, [240, 360, 480])}
+            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 200px"
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
+            decoding="async"
+            width={400}
+            height={400}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-4xl">🎀</div>

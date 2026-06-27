@@ -10,6 +10,7 @@ import {
   listCategories,
   listAllActiveProducts,
 } from "@/lib/products.functions";
+import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
 
 const searchSchema = z.object({
   categoria: z.string().optional(),
@@ -137,10 +138,16 @@ function CatalogoPage() {
                   <div className="aspect-square overflow-hidden bg-[var(--brand-salmon)]/15">
                     {p.image_url ? (
                       <img
-                        src={p.image_url}
+                        src={optimizedImage(p.image_url, { width: 500, quality: 70 })}
+                        srcSet={optimizedSrcSet(p.image_url, [300, 500, 700])}
+                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 280px"
                         alt={p.name}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
+                        loading={i < 4 ? "eager" : "lazy"}
+                        fetchPriority={i < 4 ? "high" : "auto"}
+                        decoding="async"
+                        width={500}
+                        height={500}
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-6xl">🎀</div>
