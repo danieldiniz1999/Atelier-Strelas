@@ -131,7 +131,7 @@ function CatalogoPage() {
             </div>
           </ScrollReveal>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {prods.products.map((p, i) => (
               <ScrollReveal key={p.id} delay={i * 60}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
