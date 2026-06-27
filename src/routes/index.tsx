@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import {
