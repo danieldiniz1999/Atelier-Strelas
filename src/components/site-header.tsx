@@ -1,10 +1,19 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Instagram } from "lucide-react";
+import { Menu, Instagram } from "lucide-react";
 import logoAsset from "@/assets/logo-strelas.png.asset.json";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const links = [
     { label: "Início", to: "/" },
@@ -14,23 +23,68 @@ export function SiteHeader() {
     { label: "FAQ", to: "/", hash: "#faq" },
   ];
 
+  const isActive = (l: (typeof links)[number]) => {
+    if (l.hash) return pathname === l.to && typeof window !== "undefined" && window.location.hash === l.hash;
+    return pathname === l.to;
+  };
+
   return (
     <header className="w-full border-b border-border/60 bg-background">
       <div className="mx-auto flex h-20 max-w-6xl items-center gap-3 px-4 sm:h-24 sm:px-6">
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-[var(--brand-pink)]/30 bg-white text-[var(--brand-pink)] shadow-sm transition-colors hover:bg-[var(--brand-pink)] hover:text-white"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <button
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-[var(--brand-pink)]/30 bg-white text-[var(--brand-pink)] shadow-sm transition-colors hover:bg-[var(--brand-pink)] hover:text-white"
+              aria-label="Abrir menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[85vw] max-w-sm p-0">
+            <SheetHeader className="border-b border-border/60 p-6">
+              <SheetTitle className="flex items-center gap-3">
+                <img
+                  src={logoAsset.url}
+                  alt="Atelier Strelas"
+                  className="h-12 w-12 rounded-full object-cover ring-2 ring-[var(--brand-pink)]/40"
+                />
+                <span className="text-base font-bold text-foreground">Atelier Strelas</span>
+              </SheetTitle>
+            </SheetHeader>
+            <nav className="flex flex-col gap-1 px-4 py-4">
+              {links.map((l) => {
+                const href = l.hash ? `${l.to === "/" ? "" : l.to}${l.hash}` : l.to;
+                const active = isActive(l);
+                return (
+                  <a
+                    key={l.label}
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "rounded-lg px-4 py-3 text-base font-semibold transition-colors",
+                      active
+                        ? "bg-[var(--brand-pink)]/10 text-[var(--brand-pink)]"
+                        : "text-foreground/80 hover:bg-secondary hover:text-[var(--brand-pink)]",
+                    )}
+                  >
+                    {l.label}
+                  </a>
+                );
+              })}
+              <a
+                href="https://www.instagram.com/atelierstrelass"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex items-center gap-2 rounded-lg bg-brand-gradient px-4 py-3 text-base font-bold text-white shadow-sm"
+              >
+                <Instagram className="h-4 w-4" /> @atelierstrelass
+              </a>
+            </nav>
+          </SheetContent>
+        </Sheet>
 
-        <Link
-          to="/"
-          className="flex items-center gap-2"
-          aria-label="Atelier Strelas - Início"
-        >
+        <Link to="/" className="flex items-center gap-2" aria-label="Atelier Strelas - Início">
           <img
             src={logoAsset.url}
             alt="Atelier Strelas"
@@ -38,32 +92,6 @@ export function SiteHeader() {
           />
         </Link>
       </div>
-
-      {open && (
-        <div className="border-t border-border bg-background shadow-lg">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.hash ? `${l.to === "/" ? "" : l.to}${l.hash}` : l.to}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-semibold text-foreground/80 transition-colors hover:bg-secondary hover:text-[var(--brand-pink)]"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="https://www.instagram.com/atelierstrelass"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center gap-2 rounded-lg bg-brand-gradient px-4 py-3 text-base font-bold text-white shadow-sm"
-            >
-              <Instagram className="h-4 w-4" /> @atelierstrelass
-            </a>
-          </nav>
-        </div>
-      )}
     </header>
   );
 }
