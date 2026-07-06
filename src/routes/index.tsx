@@ -118,6 +118,8 @@ function LandingPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <WhatsappFloat />
+      <RecentBuyersPopup />
+
 
       {/* HERO */}
       <section className="relative overflow-hidden">
