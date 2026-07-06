@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/accordion";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsappFloat } from "@/components/whatsapp-float";
+import { RecentBuyersPopup } from "@/components/recent-buyers-popup";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CountUp } from "@/components/count-up";
