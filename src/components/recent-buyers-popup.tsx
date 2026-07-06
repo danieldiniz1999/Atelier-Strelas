@@ -6,8 +6,8 @@ type Buyer = {
   city: string;
   state: string;
   product: string;
-  timeAgo: string;
 };
+
 
 const BUYERS: Buyer[] = [
   { name: "Juliana M.", city: "São Paulo", state: "SP", product: "Kit 20 bolsinhas tema Safári", timeAgo: "há 3 minutos" },
