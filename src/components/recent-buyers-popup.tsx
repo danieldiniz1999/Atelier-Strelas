@@ -36,6 +36,7 @@ export function RecentBuyersPopup() {
     const showNext = () => {
       if (cancelled) return;
       setIndex((i) => (i + 1) % BUYERS.length);
+      setMinutes(1 + Math.floor(Math.random() * 7));
       setVisible(true);
       // hide after 6s, then next after 4s
       window.setTimeout(() => {
