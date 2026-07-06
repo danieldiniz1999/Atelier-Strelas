@@ -26,6 +26,7 @@ const BUYERS: Buyer[] = [
 
 export function RecentBuyersPopup() {
   const [index, setIndex] = useState(0);
+  const [minutes, setMinutes] = useState(() => 1 + Math.floor(Math.random() * 7));
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
 
