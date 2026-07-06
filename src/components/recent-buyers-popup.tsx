@@ -78,7 +78,7 @@ export function RecentBuyersPopup() {
           </p>
           <p className="mt-1 flex items-center gap-1 text-[11px] text-muted-foreground">
             <BadgeCheck className="h-3 w-3 text-emerald-500" />
-            Compra verificada · {buyer.timeAgo}
+            Compra verificada · há {minutes} {minutes === 1 ? "minuto" : "minutos"}
           </p>
         </div>
         <button
