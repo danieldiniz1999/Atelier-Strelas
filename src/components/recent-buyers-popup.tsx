@@ -6,26 +6,27 @@ type Buyer = {
   city: string;
   state: string;
   product: string;
-  timeAgo: string;
 };
 
+
 const BUYERS: Buyer[] = [
-  { name: "Juliana M.", city: "São Paulo", state: "SP", product: "Kit 20 bolsinhas tema Safári", timeAgo: "há 3 minutos" },
-  { name: "Camila R.", city: "Rio de Janeiro", state: "RJ", product: "Kit 15 mochilas tema Princesas", timeAgo: "há 12 minutos" },
-  { name: "Fernanda L.", city: "Salvador", state: "BA", product: "Kit 25 bolsinhas tema Circo", timeAgo: "há 27 minutos" },
-  { name: "Patrícia M.", city: "Porto Alegre", state: "RS", product: "Kit 10 necessaires tema Floresta", timeAgo: "há 42 minutos" },
-  { name: "Renata S.", city: "Fortaleza", state: "CE", product: "Kit 30 bolsinhas tema Dinossauros", timeAgo: "há 1 hora" },
-  { name: "Aline C.", city: "Belo Horizonte", state: "MG", product: "Kit 20 mochilas tema Astronauta", timeAgo: "há 1 hora" },
-  { name: "Beatriz F.", city: "Curitiba", state: "PR", product: "Kit 18 bolsinhas tema Fadas", timeAgo: "há 2 horas" },
-  { name: "Larissa T.", city: "Recife", state: "PE", product: "Kit 22 bolsinhas tema Unicórnio", timeAgo: "há 2 horas" },
-  { name: "Mariana O.", city: "Brasília", state: "DF", product: "Kit 15 mochilas tema Fazendinha", timeAgo: "há 3 horas" },
-  { name: "Débora A.", city: "Florianópolis", state: "SC", product: "Kit 12 necessaires tema Sereia", timeAgo: "há 3 horas" },
-  { name: "Vanessa P.", city: "Goiânia", state: "GO", product: "Kit 20 bolsinhas tema Piratas", timeAgo: "há 4 horas" },
-  { name: "Tatiane B.", city: "Manaus", state: "AM", product: "Kit 16 mochilas tema Jardim", timeAgo: "há 5 horas" },
+  { name: "Juliana M.", city: "São Paulo", state: "SP", product: "Kit 20 bolsinhas tema Safári" },
+  { name: "Camila R.", city: "Rio de Janeiro", state: "RJ", product: "Kit 15 mochilas tema Princesas" },
+  { name: "Fernanda L.", city: "Salvador", state: "BA", product: "Kit 25 bolsinhas tema Circo" },
+  { name: "Patrícia M.", city: "Porto Alegre", state: "RS", product: "Kit 10 necessaires tema Floresta" },
+  { name: "Renata S.", city: "Fortaleza", state: "CE", product: "Kit 30 bolsinhas tema Dinossauros" },
+  { name: "Aline C.", city: "Belo Horizonte", state: "MG", product: "Kit 20 mochilas tema Astronauta" },
+  { name: "Beatriz F.", city: "Curitiba", state: "PR", product: "Kit 18 bolsinhas tema Fadas" },
+  { name: "Larissa T.", city: "Recife", state: "PE", product: "Kit 22 bolsinhas tema Unicórnio" },
+  { name: "Mariana O.", city: "Brasília", state: "DF", product: "Kit 15 mochilas tema Fazendinha" },
+  { name: "Débora A.", city: "Florianópolis", state: "SC", product: "Kit 12 necessaires tema Sereia" },
+  { name: "Vanessa P.", city: "Goiânia", state: "GO", product: "Kit 20 bolsinhas tema Piratas" },
+  { name: "Tatiane B.", city: "Manaus", state: "AM", product: "Kit 16 mochilas tema Jardim" },
 ];
 
 export function RecentBuyersPopup() {
   const [index, setIndex] = useState(0);
+  const [minutes, setMinutes] = useState(() => 1 + Math.floor(Math.random() * 7));
   const [visible, setVisible] = useState(false);
   const [closed, setClosed] = useState(false);
 
@@ -35,6 +36,7 @@ export function RecentBuyersPopup() {
     const showNext = () => {
       if (cancelled) return;
       setIndex((i) => (i + 1) % BUYERS.length);
+      setMinutes(1 + Math.floor(Math.random() * 7));
       setVisible(true);
       // hide after 6s, then next after 4s
       window.setTimeout(() => {
@@ -76,7 +78,7 @@ export function RecentBuyersPopup() {
           </p>
           <p className="mt-1 flex items-center gap-1 text-[11px] text-muted-foreground">
             <BadgeCheck className="h-3 w-3 text-emerald-500" />
-            Compra verificada · {buyer.timeAgo}
+            Compra verificada · há {minutes} {minutes === 1 ? "minuto" : "minutos"}
           </p>
         </div>
         <button
