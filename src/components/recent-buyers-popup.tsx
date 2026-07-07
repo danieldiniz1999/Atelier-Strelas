@@ -60,34 +60,34 @@ export function RecentBuyersPopup() {
   return (
     <div
       aria-live="polite"
-      className={`fixed bottom-4 left-4 z-40 max-w-[92vw] sm:max-w-sm transition-all duration-500 ${
+      className={`fixed bottom-3 left-3 z-40 w-[70vw] max-w-[260px] sm:w-auto sm:max-w-sm transition-all duration-500 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >
-      <div className="flex items-start gap-3 rounded-2xl border border-black/5 bg-white p-3 pr-8 shadow-2xl shadow-black/10">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-pink)]/10 text-[var(--brand-pink)]">
-          <ShoppingBag className="h-5 w-5" />
+      <div className="relative flex items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-black/5 bg-white p-2 pr-6 sm:p-3 sm:pr-8 shadow-xl sm:shadow-2xl shadow-black/10">
+        <div className="flex h-7 w-7 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-pink)]/10 text-[var(--brand-pink)]">
+          <ShoppingBag className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="flex items-center gap-1 text-sm font-semibold text-foreground">
+          <p className="flex items-center gap-1 text-[11px] sm:text-sm font-semibold text-foreground">
             <span className="truncate">{buyer.name}</span>
-            <span className="text-muted-foreground font-normal">— {buyer.city}/{buyer.state}</span>
+            <span className="text-muted-foreground font-normal truncate">— {buyer.city}/{buyer.state}</span>
           </p>
-          <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
+          <p className="mt-0.5 line-clamp-1 sm:line-clamp-2 text-[10px] sm:text-xs text-muted-foreground">
             comprou <span className="font-medium text-foreground">{buyer.product}</span>
           </p>
-          <p className="mt-1 flex items-center gap-1 text-[11px] text-muted-foreground">
-            <BadgeCheck className="h-3 w-3 text-emerald-500" />
-            Compra verificada · há {minutes} {minutes === 1 ? "minuto" : "minutos"}
+          <p className="mt-0.5 sm:mt-1 flex items-center gap-1 text-[9px] sm:text-[11px] text-muted-foreground">
+            <BadgeCheck className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-emerald-500 shrink-0" />
+            <span className="truncate">há {minutes} min · verificada</span>
           </p>
         </div>
         <button
           type="button"
           aria-label="Fechar aviso"
           onClick={() => setClosed(true)}
-          className="absolute right-2 top-2 rounded-full p-1 text-muted-foreground hover:bg-black/5 hover:text-foreground"
+          className="absolute right-1 top-1 sm:right-2 sm:top-2 rounded-full p-1 text-muted-foreground hover:bg-black/5 hover:text-foreground"
         >
-          <X className="h-3.5 w-3.5" />
+          <X className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
         </button>
       </div>
     </div>
