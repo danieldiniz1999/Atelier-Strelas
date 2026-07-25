@@ -4,6 +4,7 @@ import { z } from "zod";
 import { ChevronRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsappFloat } from "@/components/whatsapp-float";
+import { SellerPickerButton } from "@/components/seller-picker";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
