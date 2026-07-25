@@ -4,6 +4,7 @@ import { z } from "zod";
 import { ChevronRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { WhatsappFloat } from "@/components/whatsapp-float";
+import { SellerPickerButton } from "@/components/seller-picker";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
@@ -165,12 +166,13 @@ function CatalogoPage() {
                         R$ {Number(p.price).toFixed(2).replace(".", ",")}
                       </div>
                     )}
-                    <a
-                      href="#"
+                    <SellerPickerButton
+                      ariaLabel={`Pedir orçamento de ${p.name}`}
+                      message={`Oiê! 🌸 Me apaixonei pelo produto "${p.name}" no site do Atelier Strelas e queria pedir um orçamento com você 💕`}
                       className="mt-4 inline-flex items-center justify-center gap-1 rounded-full bg-brand-gradient px-4 py-2 text-sm font-bold text-white transition-transform hover:scale-105"
                     >
                       Pedir orçamento <ChevronRight className="h-4 w-4" />
-                    </a>
+                    </SellerPickerButton>
                   </div>
                 </div>
               </ScrollReveal>
