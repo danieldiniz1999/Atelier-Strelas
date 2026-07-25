@@ -60,7 +60,7 @@ export function RecentBuyersPopup() {
   return (
     <div
       aria-live="polite"
-      className={`fixed bottom-3 left-3 z-40 w-[70vw] max-w-[260px] sm:w-auto sm:max-w-sm transition-all duration-500 ${
+      className={`fixed bottom-5 left-4 z-40 w-[68vw] max-w-[250px] sm:bottom-6 sm:left-6 sm:w-auto sm:max-w-sm transition-all duration-500 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >
