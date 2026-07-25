@@ -47,7 +47,7 @@ export function SellerPickerButton({
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] rounded-2xl sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center font-display text-2xl text-foreground">
               Com quem você quer falar?
