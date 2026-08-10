@@ -1,8 +1,20 @@
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@supabase/supabase-js";
 import { generateCategoryImage } from "@/lib/ai-images.functions";
 
 export async function updateCategoryImagesWithAI() {
-  const { data: categories, error } = await supabase
+  const supabaseUrl = process.env.SUPABASE_URL || "https://syxhnmjmwxtlnsozrnwz.supabase.co";
+  const supabaseServiceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseServiceRole) {
+    console.error("Missing SUPABASE_SERVICE_ROLE_KEY");
+    return;
+  }
+
+  const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRole, {
+    auth: { persistSession: false }
+  });
+
+  const { data: categories, error } = await supabaseAdmin
     .from("categories")
     .select("id, name, description");
   
@@ -13,18 +25,9 @@ export async function updateCategoryImagesWithAI() {
 
   for (const cat of categories) {
     try {
-      console.log(`Generating image for: ${cat.name}`);
-      const { url } = await generateCategoryImage({ data: { categoryName: cat.name, description: cat.description } });
-      
-      const { error: updateError } = await supabase
-        .from("categories")
-        .update({ image_url: url } as any)
-        .eq("id", cat.id);
-
-      if (updateError) console.error(`Error updating ${cat.name}:`, updateError);
-      console.log(`Updated ${cat.name} with AI image.`);
+      await generateCategoryImage({ data: { categoryName: cat.name, description: cat.description } });
     } catch (e) {
-      console.error(`Failed for ${cat.name}:`, e);
+      console.error(`[AI-BOOTSTRAP] Failed for ${cat.name}:`, e);
     }
   }
 }
