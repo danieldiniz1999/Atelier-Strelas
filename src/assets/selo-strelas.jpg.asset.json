@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "ca62af21-cb25-445b-b925-ad2816def773",
-  "project_id": "3814d5a8-4046-49d5-9bd2-303075e6d871",
-  "url": "/__l5e/assets-v1/ca62af21-cb25-445b-b925-ad2816def773/selo-strelas.jpg",
-  "r2_key": "a/v1/3814d5a8-4046-49d5-9bd2-303075e6d871/ca62af21-cb25-445b-b925-ad2816def773/selo-strelas.jpg",
-  "original_filename": "selo-strelas.jpg",
-  "size": 252517,
   "content_type": "image/jpeg",
-  "created_at": "2026-06-19T21:23:06Z"
+  "created_at": "2026-06-19T21:23:06Z",
+  "original_filename": "selo-strelas.jpg",
+  "project_id": "aaf2c253-0716-4780-9ad4-91f0f521b146",
+  "r2_key": "a/v1/aaf2c253-0716-4780-9ad4-91f0f521b146/ca62af21-cb25-445b-b925-ad2816def773/selo-strelas.jpg",
+  "size": 252517,
+  "url": "/__l5e/assets-v1/ca62af21-cb25-445b-b925-ad2816def773/selo-strelas.jpg",
+  "version": 1
 }
