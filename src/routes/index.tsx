@@ -311,12 +311,17 @@ function LandingPage() {
                   search={{ categoria: cat.slug }}
                   className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
                 >
-                  <div className="mb-4 h-16 w-16 overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center">
-                    {cat.image_url ? (
-                      <img src={cat.image_url} alt={cat.name} className="h-full w-full object-cover" />
-                    ) : (
-                      <span className="text-2xl">🎁</span>
-                    )}
+                  <div className="mb-4 h-24 w-full overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center">
+                    <img 
+                      src={cat.name === "Bolsinhas" ? "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1024&h=1024&auto=format&fit=crop" :
+                           cat.name === "Mochilinhas" ? "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1024&h=1024&auto=format&fit=crop" :
+                           cat.name === "Necessaires" ? "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?q=80&w=1024&h=1024&auto=format&fit=crop" :
+                           cat.name === "Kits Luxo" ? "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=1024&h=1024&auto=format&fit=crop" :
+                           cat.name === "Estojos" ? "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?q=80&w=1024&h=1024&auto=format&fit=crop" :
+                           "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1024&h=1024&auto=format&fit=crop"} 
+                      alt={cat.name} 
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    />
                   </div>
                   <h3 className="font-display text-xl font-bold text-foreground">
                     {cat.name}
