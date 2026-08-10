@@ -32,18 +32,20 @@ function productsQuery(categoria?: string) {
 export const Route = createFileRoute("/catalogo")({
   head: () => ({
     meta: [
-      { title: "Catálogo de bolsas personalizadas — Atelier Strelas" },
+      { title: "Catálogo de Lembrancinhas | Atelier Strelas" },
       {
         name: "description",
         content:
-          "Catálogo completo de mochilas, maletas, frasqueiras, brindes e bolsas de luxo personalizadas para festas infantis. Confira modelos e peça já.",
+          "Explore nosso catálogo completo: mochilas, necessaires e bolsas personalizadas. Diversos temas e modelos para a festa do seu filho. Peça seu orçamento online!",
       },
-      { property: "og:title", content: "Catálogo — Atelier Strelas" },
+      { property: "og:title", content: "Catálogo de Produtos | Atelier Strelas" },
       {
         property: "og:description",
-        content: "Bolsas e mochilas personalizadas para festas infantis.",
+        content: "Veja nossos modelos de bolsas e mochilas personalizadas. O detalhe que faz a diferença na sua festa.",
       },
       { property: "og:url", content: "https://atelier-strelas.lovable.app/catalogo" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://atelier-strelas.lovable.app/catalogo" }],
   }),

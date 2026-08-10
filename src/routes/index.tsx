@@ -49,18 +49,20 @@ const categoriesQuery = queryOptions({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Atelier Strelas — Bolsas personalizadas para festas infantis" },
+      { title: "Atelier Strelas | Lembrancinhas Personalizadas que Encantam" },
       {
         name: "description",
         content:
-          "Bolsas, mochilas e necessaires personalizadas feitas à mão para festas infantis. Cada lembrancinha conta uma história — a do seu filho.",
+          "Encontre a lembrancinha perfeita no Atelier Strelas. Bolsas, mochilas e necessaires personalizadas para festas infantis. Feito à mão com qualidade premium.",
       },
-      { property: "og:title", content: "Atelier Strelas — Lembrancinhas que encantam" },
+      { property: "og:title", content: "Atelier Strelas | Lembrancinhas Personalizadas" },
       {
         property: "og:description",
-        content: "Bolsas personalizadas para festas infantis, feitas com amor.",
+        content: "Bolsas e mochilas personalizadas para festas infantis. Transforme sonhos em memórias inesquecíveis.",
       },
       { property: "og:url", content: "https://atelier-strelas.lovable.app/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://atelier-strelas.lovable.app/" }],
   }),
