@@ -1,0 +1,1 @@
+ALTER TABLE public.categories ADD COLUMN IF NOT EXISTS image_url TEXT; GRANT SELECT, INSERT, UPDATE, DELETE ON public.categories TO authenticated; GRANT SELECT ON public.categories TO anon; GRANT ALL ON public.categories TO service_role;
