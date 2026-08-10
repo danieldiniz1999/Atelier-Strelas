@@ -84,6 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "t9BsW8N1eH4KELsUVfUcU-FJ9QQ-cKNNduu5Z3kAvSM" },
       { title: "Atelier Strelas | Bolsas Personalizadas e Lembrancinhas de Luxo" },
       { name: "description", content: "Transforme a festa do seu filho com o Atelier Strelas. Bolsas, mochilas e necessaires personalizadas feitas à mão com amor. Entrega em todo o Brasil. Peça seu orçamento!" },
       { name: "keywords", content: "bolsas personalizadas, lembrancinhas de luxo, festa infantil, mochilas personalizadas, necessaires sob encomenda, Atelier Strelas" },
