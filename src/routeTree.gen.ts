@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicGenerateCategoryImagesRouteImport } from './routes/api/public/generate-category-images'
 import { Route as ApiPublicBootstrapAdminsRouteImport } from './routes/api/public/bootstrap-admins'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -35,6 +36,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGenerateCategoryImagesRoute =
+  ApiPublicGenerateCategoryImagesRouteImport.update({
+    id: '/api/public/generate-category-images',
+    path: '/api/public/generate-category-images',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicBootstrapAdminsRoute =
   ApiPublicBootstrapAdminsRouteImport.update({
     id: '/api/public/bootstrap-admins',
@@ -48,6 +55,7 @@ export interface FileRoutesByFullPath {
   '/catalogo': typeof CatalogoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
+  '/api/public/generate-category-images': typeof ApiPublicGenerateCategoryImagesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -55,6 +63,7 @@ export interface FileRoutesByTo {
   '/catalogo': typeof CatalogoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
+  '/api/public/generate-category-images': typeof ApiPublicGenerateCategoryImagesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -63,6 +72,7 @@ export interface FileRoutesById {
   '/catalogo': typeof CatalogoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/public/bootstrap-admins': typeof ApiPublicBootstrapAdminsRoute
+  '/api/public/generate-category-images': typeof ApiPublicGenerateCategoryImagesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -72,6 +82,7 @@ export interface FileRouteTypes {
     | '/catalogo'
     | '/sitemap.xml'
     | '/api/public/bootstrap-admins'
+    | '/api/public/generate-category-images'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -79,6 +90,7 @@ export interface FileRouteTypes {
     | '/catalogo'
     | '/sitemap.xml'
     | '/api/public/bootstrap-admins'
+    | '/api/public/generate-category-images'
   id:
     | '__root__'
     | '/'
@@ -86,6 +98,7 @@ export interface FileRouteTypes {
     | '/catalogo'
     | '/sitemap.xml'
     | '/api/public/bootstrap-admins'
+    | '/api/public/generate-category-images'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +107,7 @@ export interface RootRouteChildren {
   CatalogoRoute: typeof CatalogoRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicBootstrapAdminsRoute: typeof ApiPublicBootstrapAdminsRoute
+  ApiPublicGenerateCategoryImagesRoute: typeof ApiPublicGenerateCategoryImagesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -126,6 +140,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/generate-category-images': {
+      id: '/api/public/generate-category-images'
+      path: '/api/public/generate-category-images'
+      fullPath: '/api/public/generate-category-images'
+      preLoaderRoute: typeof ApiPublicGenerateCategoryImagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/bootstrap-admins': {
       id: '/api/public/bootstrap-admins'
       path: '/api/public/bootstrap-admins'
@@ -142,6 +163,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogoRoute: CatalogoRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicBootstrapAdminsRoute: ApiPublicBootstrapAdminsRoute,
+  ApiPublicGenerateCategoryImagesRoute: ApiPublicGenerateCategoryImagesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
