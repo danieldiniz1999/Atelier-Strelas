@@ -16,10 +16,13 @@ export async function updateCategoryImagesWithAI() {
       console.log(`Generating image for: ${cat.name}`);
       const { url } = await generateCategoryImage({ data: { categoryName: cat.name, description: cat.description } });
       
-      // Update categories table if we had an image_url column, but we don't.
-      // We'll use a local mapping or add the column.
-      // For now, let's just log and see if it works.
-      console.log(`Generated URL for ${cat.name}: ${url}`);
+      const { error: updateError } = await supabase
+        .from("categories")
+        .update({ image_url: url } as any)
+        .eq("id", cat.id);
+
+      if (updateError) console.error(`Error updating ${cat.name}:`, updateError);
+      console.log(`Updated ${cat.name} with AI image.`);
     } catch (e) {
       console.error(`Failed for ${cat.name}:`, e);
     }

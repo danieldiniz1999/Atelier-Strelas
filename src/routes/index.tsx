@@ -311,8 +311,12 @@ function LandingPage() {
                   search={{ categoria: cat.slug }}
                   className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
                 >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-2xl">
-                    🎁
+                  <div className="mb-4 h-16 w-16 overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center">
+                    {cat.image_url ? (
+                      <img src={cat.image_url} alt={cat.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="text-2xl">🎁</span>
+                    )}
                   </div>
                   <h3 className="font-display text-xl font-bold text-foreground">
                     {cat.name}
