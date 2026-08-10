@@ -15,7 +15,7 @@ export const listCategories = createServerFn({ method: "GET" }).handler(async ()
   const sb = publicClient();
   const { data, error } = await sb
     .from("categories")
-    .select("id, name, slug, description, display_order")
+    .select("id, name, slug, description, display_order, image_url")
     .order("display_order", { ascending: true });
   if (error) return { categories: [] as Array<{ id: string; name: string; slug: string; description: string | null; display_order: number }> };
   return { categories: data ?? [] };
