@@ -132,7 +132,7 @@ function LandingPage() {
         </div>
 
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center md:py-24">
-          <div className="md:col-start-1 md:row-start-1">
+          <div className="text-center md:col-start-1 md:row-start-1 md:text-left">
             <span className="hero-rise inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[var(--brand-pink)] shadow-sm">
               <Sparkles className="h-3.5 w-3.5" /> Lembrancinhas únicas
             </span>
@@ -140,7 +140,7 @@ function LandingPage() {
               A festa do seu filho merece uma{" "}
               <span className="text-brand-gradient">lembrança inesquecível</span>.
             </h1>
-            <p className="hero-rise hero-rise-delay-2 mt-5 max-w-lg text-lg text-foreground/75">
+            <p className="hero-rise hero-rise-delay-2 mt-5 mx-auto max-w-lg text-lg text-foreground/75 md:mx-0">
               Bolsas, mochilas e necessaires personalizadas, feitas à mão com o
               tema dos sonhos da sua criança. Cada peça nasce do carinho — e vira
               memória que dura pra vida toda.
@@ -163,29 +163,23 @@ function LandingPage() {
           </div>
 
           <div className="order-3 md:order-none md:col-start-1 md:row-start-2">
-            <div className="hero-rise hero-rise-delay-3 flex flex-wrap gap-3">
+            <div className="hero-rise hero-rise-delay-3 flex flex-wrap justify-center gap-3 md:justify-start">
               <SellerPickerButton
                 ariaLabel="Pedir orçamento no WhatsApp"
                 message="Vim pelo site e quero um orçamento para a festa da minha criança! 🎀"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[var(--brand-pink)]/30 transition-transform hover:scale-105"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-[var(--brand-pink)]/30 transition-transform hover:scale-105 sm:w-auto"
               >
                 Pedir orçamento <MessageCircle className="h-4 w-4" />
               </SellerPickerButton>
               <Link
                 to="/catalogo"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-pink)] bg-white px-7 py-3.5 text-base font-bold text-[var(--brand-pink)] transition-colors hover:bg-[var(--brand-pink)] hover:text-white"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[var(--brand-pink)] bg-white px-7 py-3.5 text-base font-bold text-[var(--brand-pink)] transition-colors hover:bg-[var(--brand-pink)] hover:text-white sm:w-auto"
               >
                 Ver catálogo <ChevronRight className="h-4 w-4" />
               </Link>
-              <a
-                href="#sobre"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--brand-salmon)] bg-white px-7 py-3.5 text-base font-bold text-foreground/75 transition-colors hover:border-[var(--brand-pink)] hover:text-[var(--brand-pink)]"
-              >
-                Conheça a Strelas
-              </a>
             </div>
 
-            <div className="hero-rise hero-rise-delay-3 mt-10 flex flex-wrap items-center gap-6 text-sm text-foreground/70">
+            <div className="hero-rise hero-rise-delay-3 mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-foreground/70 md:justify-start">
               <div className="flex items-center gap-2">
                 <Heart className="h-4 w-4 text-[var(--brand-bubblegum)]" />
                 Feito à mão com amor
