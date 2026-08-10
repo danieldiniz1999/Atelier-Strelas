@@ -6,11 +6,15 @@ export const generateCategoryImage = createServerFn({ method: "POST" })
   .inputValidator((input) => z.object({ categoryName: z.string(), description: z.string().nullable() }).parse(input))
   .handler(async ({ data }) => {
     const apiKey = process.env.LOVABLE_API_KEY;
+    const supabaseUrl = process.env.SUPABASE_URL || "https://syxhnmjmwxtlnsozrnwz.supabase.co";
+    const supabaseServiceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    
     if (!apiKey) throw new Error("LOVABLE_API_KEY not configured");
+    if (!supabaseServiceRole) throw new Error("SUPABASE_SERVICE_ROLE_KEY not configured");
 
     const prompt = `High-end, premium product photography of ${data.categoryName} for children's luxury party favors. ${data.description || ""}. Clean, minimalist pastel background, studio lighting, soft textures, professional branding, realistic.`;
     
-    console.log(`[AI-GEN] Starting for: ${data.categoryName}`);
+    console.log(`[AI-GEN] Requesting image for: ${data.categoryName}`);
 
     const response = await fetch("https://api.lovable.dev/v1/images/generations", {
       method: "POST",
@@ -35,12 +39,9 @@ export const generateCategoryImage = createServerFn({ method: "POST" })
     const result = await response.json();
     const url = result.data[0].url;
     
-    // Direct persistence with service role to bypass RLS during bootstrap
-    const supabaseAdmin = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      { auth: { persistSession: false } }
-    );
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRole, {
+      auth: { persistSession: false }
+    });
     
     const { error: updateError } = await supabaseAdmin
       .from("categories")
@@ -50,7 +51,7 @@ export const generateCategoryImage = createServerFn({ method: "POST" })
     if (updateError) {
       console.error(`[AI-GEN] DB Update Error for ${data.categoryName}:`, updateError);
     } else {
-      console.log(`[AI-GEN] Successfully persisted ${data.categoryName}`);
+      console.log(`[AI-GEN] Persisted ${data.categoryName} -> ${url}`);
     }
 
     return { url };
