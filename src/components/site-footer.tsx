@@ -74,9 +74,22 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/55 sm:flex-row sm:px-6">
-          <span>© {new Date().getFullYear()} Atelier Strelas · Feito à mão, com linha, agulha e muito amor de mãe. Todos os direitos (e carinhos) reservados.</span>
-          <Link to="/admin" className="hover:text-white/80">Acesso restrito</Link>
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-5 text-xs text-white/60 sm:flex-row sm:px-6">
+          <span>© {new Date().getFullYear()} Atelier Strelas · Feito à mão, com linha, agulha e muito amor de mãe. Todos os direitos reservados.</span>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span>Desenvolvido por</span>
+              <div className="inline-flex items-center gap-1.5 rounded-md bg-white px-2 py-1 shadow-sm">
+                <img
+                  src="/nissi-digital-logo.png"
+                  alt="Agência Nissi Digital"
+                  className="h-5 w-auto object-contain"
+                />
+              </div>
+            </div>
+            <span className="text-white/20">|</span>
+            <Link to="/admin" className="hover:text-white/80">Acesso restrito</Link>
+          </div>
         </div>
       </div>
     </footer>
