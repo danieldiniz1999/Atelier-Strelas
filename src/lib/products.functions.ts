@@ -15,7 +15,7 @@ const DEFAULT_CATEGORIES = [
   { id: "cat-1", name: "Bolsinhas", slug: "bolsinhas", description: null, display_order: 1, image_url: "/cat-bolsinhas.jpg" },
   { id: "cat-2", name: "Mochilinhas", slug: "mochilinhas", description: null, display_order: 2, image_url: "/cat-mochilinhas.jpg" },
   { id: "cat-3", name: "Necessaires & Frasqueiras", slug: "necessaires", description: null, display_order: 3, image_url: "/cat-necessaires.jpg" },
-  { id: "cat-4", name: "Kits Luxo", slug: "kits-luxo", description: null, display_order: 4, image_url: null },
+  { id: "cat-4", name: "Kits Luxo & 3D", slug: "kits-luxo", description: null, display_order: 4, image_url: "/cat-kits-luxo.jpg" },
   { id: "cat-5", name: "Estojos", slug: "estojos", description: null, display_order: 5, image_url: null },
   { id: "cat-6", name: "Maletas", slug: "maletas", description: null, display_order: 6, image_url: "/cat-maletas.jpg" },
 ];

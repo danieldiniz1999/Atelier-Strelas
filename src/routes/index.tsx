@@ -309,6 +309,7 @@ function LandingPage() {
                 bolsinhas: "/cat-bolsinhas.jpg",
                 mochilinhas: "/cat-mochilinhas.jpg",
                 necessaires: "/cat-necessaires.jpg",
+                "kits-luxo": "/cat-kits-luxo.jpg",
                 maletas: "/cat-maletas.jpg",
               };
               const categoryIcons: Record<string, string> = {
