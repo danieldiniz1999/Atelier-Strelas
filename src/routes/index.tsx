@@ -305,6 +305,9 @@ function LandingPage() {
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {categories.categories.map((cat, i) => {
+              const categoryImages: Record<string, string> = {
+                maletas: "/cat-maletas.jpg",
+              };
               const categoryIcons: Record<string, string> = {
                 bolsinhas: "👛",
                 mochilinhas: "🎒",
@@ -313,6 +316,7 @@ function LandingPage() {
                 estojos: "✏️",
                 maletas: "🧳",
               };
+              const imageUrl = cat.image_url || categoryImages[cat.slug];
               return (
                 <ScrollReveal key={cat.id} delay={i * 60}>
                   <Link
@@ -321,8 +325,8 @@ function LandingPage() {
                     className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
                   >
                     <div className="mb-4 h-16 w-16 overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center shadow-md shadow-[var(--brand-pink)]/20">
-                      {cat.image_url ? (
-                        <img src={cat.image_url} alt={cat.name} className="h-full w-full object-cover" />
+                      {imageUrl ? (
+                        <img src={imageUrl} alt={cat.name} className="h-full w-full object-cover" />
                       ) : (
                         <span className="text-2xl">{categoryIcons[cat.slug] || "🎁"}</span>
                       )}

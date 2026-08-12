@@ -17,7 +17,7 @@ const DEFAULT_CATEGORIES = [
   { id: "cat-3", name: "Necessaires", slug: "necessaires", description: null, display_order: 3, image_url: null },
   { id: "cat-4", name: "Kits Luxo", slug: "kits-luxo", description: null, display_order: 4, image_url: null },
   { id: "cat-5", name: "Estojos", slug: "estojos", description: null, display_order: 5, image_url: null },
-  { id: "cat-6", name: "Maletas", slug: "maletas", description: null, display_order: 6, image_url: null },
+  { id: "cat-6", name: "Maletas", slug: "maletas", description: null, display_order: 6, image_url: "/cat-maletas.jpg" },
 ];
 
 export const listCategories = createServerFn({ method: "GET" }).handler(async () => {
