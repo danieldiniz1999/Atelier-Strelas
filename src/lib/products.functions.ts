@@ -12,7 +12,7 @@ function publicClient() {
 }
 
 const DEFAULT_CATEGORIES = [
-  { id: "cat-1", name: "Bolsinhas", slug: "bolsinhas", description: null, display_order: 1, image_url: null },
+  { id: "cat-1", name: "Bolsinhas", slug: "bolsinhas", description: null, display_order: 1, image_url: "/cat-bolsinhas.jpg" },
   { id: "cat-2", name: "Mochilinhas", slug: "mochilinhas", description: null, display_order: 2, image_url: null },
   { id: "cat-3", name: "Necessaires", slug: "necessaires", description: null, display_order: 3, image_url: null },
   { id: "cat-4", name: "Kits Luxo", slug: "kits-luxo", description: null, display_order: 4, image_url: null },

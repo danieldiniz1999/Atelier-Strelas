@@ -306,6 +306,7 @@ function LandingPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {categories.categories.map((cat, i) => {
               const categoryImages: Record<string, string> = {
+                bolsinhas: "/cat-bolsinhas.jpg",
                 maletas: "/cat-maletas.jpg",
               };
               const categoryIcons: Record<string, string> = {
