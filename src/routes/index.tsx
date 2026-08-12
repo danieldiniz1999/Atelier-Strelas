@@ -304,32 +304,42 @@ function LandingPage() {
           </ScrollReveal>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.categories.map((cat, i) => (
-              <ScrollReveal key={cat.id} delay={i * 60}>
-                <Link
-                  to="/catalogo"
-                  search={{ categoria: cat.slug }}
-                  className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
-                >
-                  <div className="mb-4 h-16 w-16 overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center">
-                    {cat.image_url ? (
-                      <img src={cat.image_url} alt={cat.name} className="h-full w-full object-cover" />
-                    ) : (
-                      <span className="text-2xl">🎁</span>
+            {categories.categories.map((cat, i) => {
+              const categoryIcons: Record<string, string> = {
+                bolsinhas: "👛",
+                mochilinhas: "🎒",
+                necessaires: "👝",
+                "kits-luxo": "✨",
+                estojos: "✏️",
+                maletas: "🧳",
+              };
+              return (
+                <ScrollReveal key={cat.id} delay={i * 60}>
+                  <Link
+                    to="/catalogo"
+                    search={{ categoria: cat.slug }}
+                    className="group block h-full rounded-2xl border-2 border-transparent bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-bubblegum)] hover:shadow-lg active:scale-95 active:border-[var(--brand-pink)] active:shadow-lg active:shadow-[var(--brand-pink)]/30"
+                  >
+                    <div className="mb-4 h-16 w-16 overflow-hidden rounded-2xl bg-brand-gradient flex items-center justify-center shadow-md shadow-[var(--brand-pink)]/20">
+                      {cat.image_url ? (
+                        <img src={cat.image_url} alt={cat.name} className="h-full w-full object-cover" />
+                      ) : (
+                        <span className="text-2xl">{categoryIcons[cat.slug] || "🎁"}</span>
+                      )}
+                    </div>
+                    <h3 className="font-display text-xl font-bold text-foreground">
+                      {cat.name}
+                    </h3>
+                    {cat.description && (
+                      <p className="mt-2 text-sm text-foreground/65">{cat.description}</p>
                     )}
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-foreground">
-                    {cat.name}
-                  </h3>
-                  {cat.description && (
-                    <p className="mt-2 text-sm text-foreground/65">{cat.description}</p>
-                  )}
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-pink)] group-hover:gap-2 transition-all">
-                    Ver modelos <ChevronRight className="h-4 w-4" />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            ))}
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-pink)] group-hover:gap-2 transition-all">
+                      Ver modelos <ChevronRight className="h-4 w-4" />
+                    </span>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
