@@ -308,6 +308,7 @@ function LandingPage() {
               const categoryImages: Record<string, string> = {
                 bolsinhas: "/cat-bolsinhas.jpg",
                 mochilinhas: "/cat-mochilinhas.jpg",
+                necessaires: "/cat-necessaires.jpg",
                 maletas: "/cat-maletas.jpg",
               };
               const categoryIcons: Record<string, string> = {
