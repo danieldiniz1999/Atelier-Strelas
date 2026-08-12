@@ -307,6 +307,7 @@ function LandingPage() {
             {categories.categories.map((cat, i) => {
               const categoryImages: Record<string, string> = {
                 bolsinhas: "/cat-bolsinhas.jpg",
+                mochilinhas: "/cat-mochilinhas.jpg",
                 maletas: "/cat-maletas.jpg",
               };
               const categoryIcons: Record<string, string> = {
