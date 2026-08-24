@@ -309,6 +309,7 @@ function LandingPage() {
                 bolsinhas: "/cat-bolsinhas.jpg",
                 mochilinhas: "/cat-mochilinhas.jpg",
                 necessaires: "/cat-necessaires.jpg",
+                frasqueiras: "/cat-frasqueiras.jpg",
                 "kits-luxo": "/cat-kits-luxo.jpg",
                 maletas: "/cat-maletas.jpg",
               };
@@ -316,7 +317,8 @@ function LandingPage() {
                 bolsinhas: "👛",
                 mochilinhas: "🎒",
                 necessaires: "👝",
-                "kits-luxo": "✨",
+                frasqueiras: "✨",
+                "kits-luxo": "👑",
                 estojos: "✏️",
                 maletas: "🧳",
               };
