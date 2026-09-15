@@ -1,11 +1,11 @@
-{
-  "asset_id": "6c92fcc1-ee23-460c-b94b-07c77cc47468",
-  "content_type": "image/jpeg",
-  "created_at": "2026-06-20T04:06:12Z",
-  "original_filename": "hero-festa.jpeg",
-  "project_id": "aaf2c253-0716-4780-9ad4-91f0f521b146",
-  "r2_key": "a/v1/aaf2c253-0716-4780-9ad4-91f0f521b146/6c92fcc1-ee23-460c-b94b-07c77cc47468/hero-festa.jpeg",
-  "size": 178957,
-  "url": "/__l5e/assets-v1/6c92fcc1-ee23-460c-b94b-07c77cc47468/hero-festa.jpeg",
-  "version": 1
+﻿{
+    "asset_id":  "6c92fcc1-ee23-460c-b94b-07c77cc47468",
+    "content_type":  "image/jpeg",
+    "created_at":  "2026-06-20T04:06:12Z",
+    "original_filename":  "hero-festa.jpeg",
+    "project_id":  "aaf2c253-0716-4780-9ad4-91f0f521b146",
+    "r2_key":  "a/v1/aaf2c253-0716-4780-9ad4-91f0f521b146/6c92fcc1-ee23-460c-b94b-07c77cc47468/hero-festa.jpeg",
+    "size":  178957,
+    "url":  "/assets/hero-festa.jpeg",
+    "version":  1
 }
