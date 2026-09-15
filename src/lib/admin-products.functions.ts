@@ -4,15 +4,15 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 const productInput = z.object({
   id: z.string().uuid().optional(),
-  name: z.string().min(1),
-  description: z.string().optional().nullable(),
-  price: z.number().nullable().optional(),
-  image_url: z.string().url().nullable().optional(),
-  image_urls: z.array(z.string().url()).max(5).optional(),
+  name: z.string().min(1).max(255),
+  description: z.string().max(2000).optional().nullable(),
+  price: z.number().min(0).max(1000000).nullable().optional(),
+  image_url: z.string().url().max(1000).nullable().optional(),
+  image_urls: z.array(z.string().url().max(1000)).max(5).optional(),
   category_id: z.string().uuid().nullable().optional(),
   is_featured: z.boolean().optional(),
   is_active: z.boolean().optional(),
-  display_order: z.number().int().optional(),
+  display_order: z.number().int().min(0).max(99999).optional(),
 });
 
 async function assertAdmin(context: { supabase: any; userId: string }) {
