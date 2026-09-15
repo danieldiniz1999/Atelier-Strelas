@@ -1,26 +1,29 @@
-# Atelier Strelas
+# Atelier Strelas 🌟
 
-.
+Website e catálogo interativo de lembrancinhas personalizadas para festas infantis.
 
-This project was built with [Lovable](https://lovable.dev).
+## 🚀 Tecnologias
+- **Framework:** [TanStack Start](https://tanstack.com/start) (React 19, Vite, TanStack Router)
+- **Hospedagem & Deploy:** [Vercel](https://vercel.com)
+- **Backend & Banco de Dados:** [Supabase](https://supabase.com)
+- **Estilização:** Tailwind CSS v4, Lucide Icons, Radix UI
 
-**Live app**: https://heartfelt-project-spark.lovable.app
+## 📦 Deploy na Vercel
+1. Importe este repositório no dashboard da [Vercel](https://vercel.com/new).
+2. A Vercel detectará automaticamente o framework como **TanStack Start**.
+3. Adicione as seguintes **Variáveis de Ambiente** em *Project Settings > Environment Variables*:
+   - `SUPABASE_URL`
+   - `SUPABASE_PUBLISHABLE_KEY`
+   - `SUPABASE_PROJECT_ID`
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`
+   - `VITE_SUPABASE_PROJECT_ID`
+   - `SUPABASE_SERVICE_ROLE_KEY` *(Opcional, para operações administrativas)*
+   - `SITE_URL` *(Opcional, seu domínio personalizado ou URL da Vercel)*
+4. Clique em **Deploy**!
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/aaf2c253-0716-4780-9ad4-91f0f521b146).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
+## 💻 Desenvolvimento Local
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```

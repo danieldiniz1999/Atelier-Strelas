@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { getSiteUrl } from "@/lib/site-url";
 
-const BASE_URL = "https://atelier-strelas.lovable.app";
+const BASE_URL = getSiteUrl();
 
 interface SitemapEntry {
   path: string;

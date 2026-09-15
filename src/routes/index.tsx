@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { BASE_SITE_URL } from "@/lib/site-url";
 import {
   Sparkles,
   Heart,
@@ -60,11 +61,11 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Bolsas e mochilas personalizadas para festas infantis. Transforme sonhos em memórias inesquecíveis.",
       },
-      { property: "og:url", content: "https://atelier-strelas.lovable.app/" },
+      { property: "og:url", content: `${BASE_SITE_URL}/` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://atelier-strelas.lovable.app/" }],
+    links: [{ rel: "canonical", href: `${BASE_SITE_URL}/` }],
   }),
 
   loader: async ({ context }) => {

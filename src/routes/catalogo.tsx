@@ -12,6 +12,7 @@ import {
   listAllActiveProducts,
 } from "@/lib/products.functions";
 import { optimizedImage, optimizedSrcSet } from "@/lib/image-url";
+import { BASE_SITE_URL } from "@/lib/site-url";
 
 const searchSchema = z.object({
   categoria: z.string().optional(),
@@ -43,11 +44,11 @@ export const Route = createFileRoute("/catalogo")({
         property: "og:description",
         content: "Veja nossos modelos de bolsas e mochilas personalizadas. O detalhe que faz a diferença na sua festa.",
       },
-      { property: "og:url", content: "https://atelier-strelas.lovable.app/catalogo" },
+      { property: "og:url", content: `${BASE_SITE_URL}/catalogo` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://atelier-strelas.lovable.app/catalogo" }],
+    links: [{ rel: "canonical", href: `${BASE_SITE_URL}/catalogo` }],
   }),
 
   validateSearch: (search) => searchSchema.parse(search),

@@ -18,6 +18,7 @@ import "@fontsource/nunito/600.css";
 import "@fontsource/nunito/700.css";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BASE_SITE_URL } from "../lib/site-url";
 
 function NotFoundComponent() {
   return (
@@ -112,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "Atelier Strelas",
-          url: "https://atelier-strelas.lovable.app",
+          url: BASE_SITE_URL,
           description:
             "Bolsas, mochilas e necessaires personalizadas feitas à mão para festas infantis.",
           areaServed: "BR",

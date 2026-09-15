@@ -1,10 +1,9 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# Atelier Strelas - Guia de Arquitetura e Deploy
+
+> [!NOTE]
+> Este projeto está configurado para deploy contínuo na **Vercel** através do GitHub.
+> 
+> - **Framework:** TanStack Start (React 19 + Vite 8 + Nitro)
+> - **Hospedagem & Deploy:** Vercel (detecção zero-config via Nitro Build Output API v3)
+> - **Banco de Dados:** Supabase com Row Level Security (RLS) blindado
+> - **Estilização:** Tailwind CSS v4 + Radix UI
