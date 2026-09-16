@@ -1,14 +1,20 @@
-// Rota para disparar a geração de imagens de categorias via IA
+// Endpoint desativado por segurança para impedir sobrescrita não-autorizada de fotos e consumo indevido de API
 import { createFileRoute } from "@tanstack/react-router";
-import { updateCategoryImagesWithAI } from "@/lib/bootstrap-ai-images";
 
 export const Route = createFileRoute("/api/public/generate-category-images")({
   server: {
     handlers: {
       POST: async () => {
-        // Dispara em background para não travar a requisição
-        updateCategoryImagesWithAI().catch(console.error);
-        return Response.json({ ok: true, message: "Geração de imagens iniciada em segundo plano." });
+        return Response.json(
+          { error: "Acesso negado: Este endpoint foi desativado por motivos de segurança." },
+          { status: 403 },
+        );
+      },
+      GET: async () => {
+        return Response.json(
+          { error: "Acesso negado." },
+          { status: 403 },
+        );
       },
     },
   },

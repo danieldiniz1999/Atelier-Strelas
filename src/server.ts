@@ -45,6 +45,8 @@ function applySecurityHeaders(res: Response): Response {
   newHeaders.set("Referrer-Policy", "strict-origin-when-cross-origin");
   newHeaders.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   newHeaders.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+  newHeaders.set("Cross-Origin-Resource-Policy", "cross-origin");
 
   return new Response(res.body, {
     status: res.status,

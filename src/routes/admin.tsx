@@ -34,9 +34,6 @@ function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Tenta garantir que os usuários iniciais existam (idempotente).
-    fetch("/api/public/bootstrap-admins").catch(() => {});
-
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
       if (s?.user) {
         setSession("in");
