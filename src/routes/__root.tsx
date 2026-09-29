@@ -98,13 +98,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Atelier Strelas | Bolsas Personalizadas e Lembrancinhas de Luxo" },
       { property: "og:description", content: "Lembrancinhas personalizadas que encantam. Bolsas e mochilas feitas à mão para tornar a festa do seu filho inesquecível." },
       { name: "twitter:description", content: "Lembrancinhas personalizadas que encantam. Bolsas e mochilas feitas à mão para tornar a festa do seu filho inesquecível." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/k4iGXd0KeFOBwkpNK1NHwV2NR5Y2/social-images/social-1781911092466-logo_principal_manu.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/k4iGXd0KeFOBwkpNK1NHwV2NR5Y2/social-images/social-1781911092466-logo_principal_manu.webp" },
+      { property: "og:image", content: `${BASE_SITE_URL}/assets/logo-strelas.png` },
+      { name: "twitter:image", content: `${BASE_SITE_URL}/assets/logo-strelas.png` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://oayibexbrterqedjnway.supabase.co", crossOrigin: "anonymous" },
-      { rel: "dns-prefetch", href: "https://oayibexbrterqedjnway.supabase.co" },
+      { rel: "preconnect", href: "https://syxhnmjmwxtlnsozrnwz.supabase.co", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://syxhnmjmwxtlnsozrnwz.supabase.co" },
     ],
     scripts: [
       {

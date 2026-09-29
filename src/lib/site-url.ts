@@ -11,7 +11,7 @@ export function getSiteUrl(): string {
       return `https://${process.env.VERCEL_URL}`;
     }
   }
-  return "https://atelier-strelas.vercel.app";
+  return "https://www.lojastrelas.com.br";
 }
 
 export const BASE_SITE_URL = getSiteUrl();

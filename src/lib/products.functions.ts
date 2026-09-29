@@ -66,7 +66,7 @@ export const listFeaturedProducts = createServerFn({ method: "GET" }).handler(as
 });
 
 export const listAllActiveProducts = createServerFn({ method: "GET" })
-  .inputValidator((input) =>
+  .validator((input) =>
     z.object({ categorySlug: z.string().optional() }).parse(input ?? {}),
   )
   .handler(async ({ data }) => {

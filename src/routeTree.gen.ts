@@ -9,21 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as CatalogoRouteImport } from './routes/catalogo'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiPublicGenerateCategoryImagesRouteImport } from './routes/api/public/generate-category-images'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CatalogoRouteImport } from './routes/catalogo'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ApiPublicBootstrapAdminsRouteImport } from './routes/api/public/bootstrap-admins'
+import { Route as ApiPublicGenerateCategoryImagesRouteImport } from './routes/api/public/generate-category-images'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CatalogoRoute = CatalogoRouteImport.update({
-  id: '/catalogo',
-  path: '/catalogo',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -31,21 +26,26 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const CatalogoRoute = CatalogoRouteImport.update({
+  id: '/catalogo',
+  path: '/catalogo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicGenerateCategoryImagesRoute =
-  ApiPublicGenerateCategoryImagesRouteImport.update({
-    id: '/api/public/generate-category-images',
-    path: '/api/public/generate-category-images',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBootstrapAdminsRoute =
   ApiPublicBootstrapAdminsRouteImport.update({
     id: '/api/public/bootstrap-admins',
     path: '/api/public/bootstrap-admins',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicGenerateCategoryImagesRoute =
+  ApiPublicGenerateCategoryImagesRouteImport.update({
+    id: '/api/public/generate-category-images',
+    path: '/api/public/generate-category-images',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -112,18 +112,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/catalogo': {
-      id: '/catalogo'
-      path: '/catalogo'
-      fullPath: '/catalogo'
-      preLoaderRoute: typeof CatalogoRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -133,18 +126,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/catalogo': {
+      id: '/catalogo'
+      path: '/catalogo'
+      fullPath: '/catalogo'
+      preLoaderRoute: typeof CatalogoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/generate-category-images': {
-      id: '/api/public/generate-category-images'
-      path: '/api/public/generate-category-images'
-      fullPath: '/api/public/generate-category-images'
-      preLoaderRoute: typeof ApiPublicGenerateCategoryImagesRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/bootstrap-admins': {
@@ -152,6 +145,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/bootstrap-admins'
       fullPath: '/api/public/bootstrap-admins'
       preLoaderRoute: typeof ApiPublicBootstrapAdminsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/generate-category-images': {
+      id: '/api/public/generate-category-images'
+      path: '/api/public/generate-category-images'
+      fullPath: '/api/public/generate-category-images'
+      preLoaderRoute: typeof ApiPublicGenerateCategoryImagesRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
