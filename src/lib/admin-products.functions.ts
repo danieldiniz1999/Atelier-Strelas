@@ -78,3 +78,58 @@ export const adminListCategories = createServerFn({ method: "GET" })
     if (error) throw new Error(error.message);
     return { categories: data ?? [] };
   });
+
+export const adminUploadProductImage = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input) =>
+    z.object({
+      fileName: z.string().min(1).max(255),
+      fileBase64: z.string(),
+      contentType: z.string().default("image/jpeg"),
+    }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    // Garante que o bucket 'products' exista de forma transparente
+    try {
+      const { data: buckets } = await supabaseAdmin.storage.listBuckets();
+      const exists = buckets?.some((b) => b.name === "products" || b.id === "products");
+      if (!exists) {
+        await supabaseAdmin.storage.createBucket("products", {
+          public: true,
+          fileSizeLimit: 10485760, // 10MB
+          allowedMimeTypes: ["image/jpeg", "image/png", "image/webp", "image/gif", "image/jpg"],
+        });
+      }
+    } catch (bucketErr) {
+      console.warn("[Storage] Bucket check warning:", bucketErr);
+    }
+
+    const ext = data.fileName.split(".").pop() ?? "jpg";
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const buffer = Buffer.from(data.fileBase64, "base64");
+
+    const { error: uploadError } = await supabaseAdmin.storage
+      .from("products")
+      .upload(path, buffer, {
+        contentType: data.contentType,
+        cacheControl: "31536000",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("[Storage] Upload error:", uploadError);
+      throw new Error(`Falha no upload: ${uploadError.message}`);
+    }
+
+    const { data: publicData } = supabaseAdmin.storage
+      .from("products")
+      .getPublicUrl(path);
+
+    return {
+      url: publicData.publicUrl,
+      path,
+    };
+  });

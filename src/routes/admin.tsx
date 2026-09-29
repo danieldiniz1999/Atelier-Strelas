@@ -13,6 +13,7 @@ import {
   adminUpsertProduct,
   adminDeleteProduct,
   adminListCategories,
+  adminUploadProductImage,
 } from "@/lib/admin-products.functions";
 import logoPrincipal from "@/assets/logo-principal.png.asset.json";
 import logoStrelas from "@/assets/logo-strelas.png.asset.json";
@@ -379,6 +380,7 @@ function ProductForm({
   onSaved: () => void;
 }) {
   const upsertFn = useServerFn(adminUpsertProduct);
+  const uploadFn = useServerFn(adminUploadProductImage);
   const MAX_IMAGES = 5;
   const initialImages = (() => {
     if (product?.image_urls && product.image_urls.length > 0) return product.image_urls;
@@ -394,6 +396,19 @@ function ProductForm({
   const [isActive, setIsActive] = useState(product?.is_active ?? true);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const res = reader.result as string;
+        const base64 = res.split(",")[1] ?? res;
+        resolve(base64);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
   async function handleFilesUpload(files: FileList | File[]) {
     const list = Array.from(files);
@@ -411,19 +426,22 @@ function ProductForm({
     try {
       const uploaded: string[] = [];
       for (const file of toUpload) {
-        const ext = file.name.split(".").pop() ?? "jpg";
-        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-        const { error } = await supabase.storage.from("products").upload(path, file, {
-          cacheControl: "3600",
-          upsert: false,
+        const fileBase64 = await fileToBase64(file);
+        const res = await uploadFn({
+          data: {
+            fileName: file.name,
+            fileBase64,
+            contentType: file.type || "image/jpeg",
+          },
         });
-        if (error) throw error;
-        const { data } = await supabase.storage.from("products").createSignedUrl(path, 60 * 60 * 24 * 365 * 10);
-        if (data?.signedUrl) uploaded.push(data.signedUrl);
+        if (res?.url) {
+          uploaded.push(res.url);
+        }
       }
       setImages((prev) => [...prev, ...uploaded].slice(0, MAX_IMAGES));
-      toast.success(uploaded.length === 1 ? "Imagem enviada!" : `${uploaded.length} imagens enviadas!`);
+      toast.success(uploaded.length === 1 ? "Imagem enviada com sucesso!" : `${uploaded.length} imagens enviadas!`);
     } catch (e: any) {
+      console.error("Upload error:", e);
       toast.error(e.message ?? "Falha ao enviar imagem.");
     } finally {
       setUploading(false);
