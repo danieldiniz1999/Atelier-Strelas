@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState, useRef } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
@@ -196,6 +197,8 @@ type Category = { id: string; name: string; slug: string };
 
 function Dashboard() {
   const navigate = useNavigate();
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -230,6 +233,10 @@ function Dashboard() {
     try {
       await deleteFn({ data: { id } });
       toast.success("Produto excluído com sucesso.");
+      await queryClient.invalidateQueries({ queryKey: ["products"] });
+      await queryClient.invalidateQueries({ queryKey: ["featured-products"] });
+      await queryClient.invalidateQueries({ queryKey: ["categories"] });
+      await router.invalidate();
       refresh();
     } catch (e: any) {
       toast.error(e.message ?? "Falha ao excluir.");
@@ -332,8 +339,12 @@ function Dashboard() {
             product={editing}
             categories={categories}
             onClose={() => setShowForm(false)}
-            onSaved={() => {
+            onSaved={async () => {
               setShowForm(false);
+              await queryClient.invalidateQueries({ queryKey: ["products"] });
+              await queryClient.invalidateQueries({ queryKey: ["featured-products"] });
+              await queryClient.invalidateQueries({ queryKey: ["categories"] });
+              await router.invalidate();
               refresh();
             }}
           />
