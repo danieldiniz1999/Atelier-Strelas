@@ -112,18 +112,19 @@ function LoginScreen() {
     e.preventDefault();
     setLoading(true);
 
-    // Garante que os usuários existem antes do primeiro login
     await ensureBootstrap();
 
-    const email = `${username.trim().toLowerCase()}@strelas.local`;
+    const raw = username.trim().toLowerCase();
+    const email = raw.includes("@") ? raw : `${raw}@strelas.local`;
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
 
     if (error) {
-      toast.error("Usuário ou senha inválidos.");
+      toast.error("Usuário ou senha incorretos.");
       return;
     }
-    toast.success("Bem-vindo(a)!");
+    toast.success("Login realizado com sucesso!");
   }
 
   return (
@@ -200,6 +201,8 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Product | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterCategory, setFilterCategory] = useState("all");
 
   const listFn = useServerFn(adminListProducts);
   const listCatFn = useServerFn(adminListCategories);
@@ -212,7 +215,7 @@ function Dashboard() {
       setProducts(p.products as Product[]);
       setCategories(c.categories as Category[]);
     } catch (e: any) {
-      toast.error(e.message ?? "Erro ao carregar.");
+      toast.error(e.message ?? "Erro ao carregar produtos.");
     } finally {
       setLoading(false);
     }
@@ -223,13 +226,13 @@ function Dashboard() {
   }, []);
 
   async function handleDelete(id: string) {
-    if (!confirm("Excluir este produto?")) return;
+    if (!confirm("Tem certeza que deseja excluir este produto?")) return;
     try {
       await deleteFn({ data: { id } });
-      toast.success("Produto excluído.");
+      toast.success("Produto excluído com sucesso.");
       refresh();
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error(e.message ?? "Falha ao excluir.");
     }
   }
 
@@ -238,30 +241,87 @@ function Dashboard() {
     navigate({ to: "/" });
   }
 
+  const filteredProducts = products.filter((p) => {
+    const matchesSearch =
+      !searchQuery.trim() ||
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesCategory = filterCategory === "all" || p.category_id === filterCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const activeCount = products.filter((p) => p.is_active).length;
+  const featuredCount = products.filter((p) => p.is_featured).length;
+
   return (
-    <div className="min-h-screen bg-[var(--brand-salmon)]/10">
+    <div className="min-h-screen bg-[var(--brand-salmon)]/10 pb-12">
       <Toaster richColors position="top-center" />
-      <header className="border-b border-border bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <div className="flex items-center gap-2 font-display text-lg font-bold">
-            <img src={logoStrelas.url} alt="Atelier Strelas" className="h-10 w-10 object-contain" />
-            Painel Strelas
+      <header className="border-b border-border bg-white sticky top-0 z-20 shadow-sm">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+          <div className="flex items-center gap-3">
+            <img src={logoStrelas.url} alt="Atelier Strelas" className="h-9 w-9 object-contain" />
+            <div>
+              <span className="font-display text-lg font-bold text-foreground">Painel Administrativo</span>
+              <span className="hidden sm:inline-block ml-2 rounded-full bg-[var(--brand-salmon)]/30 px-2 py-0.5 text-[11px] font-semibold text-[var(--brand-pink)]">
+                Atelier Strelas
+              </span>
+            </div>
           </div>
-          <Button onClick={handleSignOut} variant="outline" size="sm">
-            <LogOut className="h-4 w-4" /> Sair
-          </Button>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex text-xs font-semibold text-foreground/70 hover:text-[var(--brand-pink)] transition-colors"
+            >
+              Ver Loja ↗
+            </a>
+            <a
+              href="/catalogo"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex text-xs font-semibold text-foreground/70 hover:text-[var(--brand-pink)] transition-colors"
+            >
+              Ver Catálogo ↗
+            </a>
+            <Button onClick={handleSignOut} variant="outline" size="sm" className="gap-1 text-xs">
+              <LogOut className="h-3.5 w-3.5" /> Sair
+            </Button>
+          </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-display text-2xl font-extrabold">Produtos</h2>
+        {/* STATS CARDS */}
+        <div className="mb-6 grid grid-cols-3 gap-3 sm:gap-6">
+          <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+            <span className="text-xs font-semibold text-foreground/60 uppercase tracking-wider">Total</span>
+            <div className="mt-1 font-display text-2xl font-extrabold text-foreground">{products.length}</div>
+            <span className="text-xs text-foreground/50">produtos cadastrados</span>
+          </div>
+          <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+            <span className="text-xs font-semibold text-green-700 uppercase tracking-wider">Ativos</span>
+            <div className="mt-1 font-display text-2xl font-extrabold text-green-700">{activeCount}</div>
+            <span className="text-xs text-foreground/50">visíveis no catálogo</span>
+          </div>
+          <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+            <span className="text-xs font-semibold text-[var(--brand-orange)] uppercase tracking-wider">Destaques</span>
+            <div className="mt-1 font-display text-2xl font-extrabold text-[var(--brand-orange)]">{featuredCount}</div>
+            <span className="text-xs text-foreground/50">na página inicial</span>
+          </div>
+        </div>
+
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="font-display text-2xl font-extrabold text-foreground">Gerenciar Produtos</h2>
+            <p className="text-xs text-foreground/60">Cadastre, edite fotos, preços e categorias da sua loja.</p>
+          </div>
           <Button
             onClick={() => {
               setEditing(null);
               setShowForm(true);
             }}
-            className="bg-brand-gradient text-white hover:opacity-90"
+            className="bg-brand-gradient text-white shadow-md hover:opacity-95"
           >
             <Plus className="h-4 w-4" /> Novo produto
           </Button>
@@ -279,32 +339,55 @@ function Dashboard() {
           />
         )}
 
+        {/* BARRA DE BUSCA E FILTROS */}
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Buscar por nome ou descrição..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1 bg-white"
+          />
+          <select
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+            className="flex h-9 rounded-md border border-input bg-white px-3 text-sm font-medium"
+          >
+            <option value="all">Todas as categorias</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
+        </div>
+
         {loading ? (
-          <div className="flex justify-center py-12">
-            <Loader2 className="h-6 w-6 animate-spin text-[var(--brand-pink)]" />
+          <div className="flex justify-center py-16">
+            <Loader2 className="h-8 w-8 animate-spin text-[var(--brand-pink)]" />
           </div>
-        ) : products.length === 0 ? (
-          <div className="rounded-2xl bg-white p-12 text-center text-foreground/60">
-            Nenhum produto cadastrado. Clique em "Novo produto" para começar.
+        ) : filteredProducts.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-white p-12 text-center text-foreground/60">
+            {products.length === 0
+              ? "Nenhum produto cadastrado ainda. Clique em 'Novo produto' acima para começar!"
+              : "Nenhum produto encontrado com os filtros atuais."}
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-2xl bg-white shadow-sm">
+          <div className="overflow-x-auto rounded-2xl bg-white shadow-sm border border-border">
             <table className="w-full min-w-[640px] text-sm">
               <thead className="bg-[var(--brand-salmon)]/15 text-left">
                 <tr>
                   <th className="px-4 py-3 font-display font-bold">Produto</th>
                   <th className="px-4 py-3 font-display font-bold">Categoria</th>
                   <th className="px-4 py-3 font-display font-bold">Preço</th>
+                  <th className="px-4 py-3 font-display font-bold">Ordem</th>
                   <th className="px-4 py-3 font-display font-bold">Status</th>
-                  <th className="px-4 py-3"></th>
+                  <th className="px-4 py-3 text-right">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {products.map((p) => (
-                  <tr key={p.id} className="border-t border-border">
+                {filteredProducts.map((p) => (
+                  <tr key={p.id} className="border-t border-border hover:bg-[var(--brand-salmon)]/5 transition-colors">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="h-12 w-12 overflow-hidden rounded-lg bg-[var(--brand-salmon)]/20">
+                        <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg bg-[var(--brand-salmon)]/20 border border-border">
                           {p.image_url ? (
                             <img src={p.image_url} alt="" className="h-full w-full object-cover" />
                           ) : (
@@ -314,24 +397,34 @@ function Dashboard() {
                           )}
                         </div>
                         <div>
-                          <div className="font-semibold">{p.name}</div>
-                          {p.is_featured && (
-                            <span className="text-xs font-semibold text-[var(--brand-orange)]">
-                              ★ Destaque
-                            </span>
-                          )}
+                          <div className="font-semibold text-foreground">{p.name}</div>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            {p.is_featured && (
+                              <span className="text-[11px] font-bold text-[var(--brand-orange)]">
+                                ★ Destaque na Home
+                              </span>
+                            )}
+                            {p.image_urls && p.image_urls.length > 1 && (
+                              <span className="text-[10px] text-foreground/50">
+                                ({p.image_urls.length} fotos)
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-foreground/70">
+                    <td className="px-4 py-3 text-foreground/80 font-medium">
                       {p.categories?.name ?? "—"}
                     </td>
                     <td className="px-4 py-3 font-semibold text-[var(--brand-pink)]">
                       {p.price !== null ? `R$ ${Number(p.price).toFixed(2).replace(".", ",")}` : "—"}
                     </td>
+                    <td className="px-4 py-3 text-foreground/60 text-xs">
+                      #{p.display_order ?? 0}
+                    </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                        className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                           p.is_active ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-600"
                         }`}
                       >
@@ -339,23 +432,27 @@ function Dashboard() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => {
-                          setEditing(p);
-                          setShowForm(true);
-                        }}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleDelete(p.id)}
-                      >
-                        <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
+                      <div className="flex items-center justify-end gap-1">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          title="Editar produto"
+                          onClick={() => {
+                            setEditing(p);
+                            setShowForm(true);
+                          }}
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          title="Excluir produto"
+                          onClick={() => handleDelete(p.id)}
+                        >
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -389,7 +486,12 @@ function ProductForm({
   })();
   const [name, setName] = useState(product?.name ?? "");
   const [description, setDescription] = useState(product?.description ?? "");
-  const [price, setPrice] = useState(product?.price?.toString() ?? "");
+  const [price, setPrice] = useState(
+    product?.price !== null && product?.price !== undefined
+      ? Number(product.price).toFixed(2).replace(".", ",")
+      : ""
+  );
+  const [displayOrder, setDisplayOrder] = useState(product?.display_order?.toString() ?? "0");
   const [images, setImages] = useState<string[]>(initialImages);
   const [categoryId, setCategoryId] = useState(product?.category_id ?? "");
   const [isFeatured, setIsFeatured] = useState(product?.is_featured ?? false);
@@ -464,63 +566,87 @@ function ProductForm({
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
+    if (!name.trim()) {
+      toast.error("Por favor, informe o nome do produto.");
+      return;
+    }
     setSaving(true);
     try {
+      const cleanPrice = price ? price.replace(/\./g, "").replace(",", ".").trim() : null;
       await upsertFn({
         data: {
           id: product?.id,
-          name,
-          description: description || null,
-          price: price ? Number(price) : null,
+          name: name.trim(),
+          description: description.trim() || null,
+          price: cleanPrice && !isNaN(Number(cleanPrice)) ? Number(cleanPrice) : null,
           image_url: images[0] ?? null,
           image_urls: images,
           category_id: categoryId || null,
           is_featured: isFeatured,
           is_active: isActive,
+          display_order: displayOrder ? parseInt(displayOrder, 10) : 0,
         },
       });
-      toast.success(product ? "Produto atualizado!" : "Produto cadastrado!");
+      toast.success(product ? "Produto atualizado com sucesso!" : "Produto cadastrado com sucesso!");
       onSaved();
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error(e.message ?? "Erro ao salvar produto.");
     } finally {
       setSaving(false);
     }
   }
 
   return (
-    <div className="mb-6 rounded-2xl bg-white p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-display text-lg font-bold">
-          {product ? "Editar produto" : "Novo produto"}
+    <div className="mb-6 rounded-2xl bg-white p-6 shadow-sm border border-border">
+      <div className="mb-4 flex items-center justify-between border-b border-border pb-3">
+        <h3 className="font-display text-lg font-bold text-foreground">
+          {product ? "Editar produto" : "Cadastrar novo produto"}
         </h3>
         <Button variant="ghost" size="sm" onClick={onClose}>Cancelar</Button>
       </div>
 
       <form onSubmit={handleSave} className="grid gap-4 md:grid-cols-2">
         <div className="md:col-span-2">
-          <Label>Nome *</Label>
-          <Input value={name} onChange={(e) => setName(e.target.value)} required />
+          <Label>Nome do produto *</Label>
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Ex: Mochilinha Jardim Encantado"
+            required
+          />
         </div>
         <div className="md:col-span-2">
           <Label>Descrição</Label>
-          <Input value={description} onChange={(e) => setDescription(e.target.value)} />
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Ex: Confeccionada em tecido premium com alças reforçadas..."
+          />
         </div>
         <div>
           <Label>Preço (R$)</Label>
           <Input
-            type="number"
-            step="0.01"
+            type="text"
+            placeholder="Ex: 49,90"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div>
+          <Label>Ordem de exibição</Label>
+          <Input
+            type="number"
+            value={displayOrder}
+            onChange={(e) => setDisplayOrder(e.target.value)}
+            placeholder="0 (menor aparece primeiro)"
+          />
+        </div>
+        <div className="md:col-span-2">
           <Label>Categoria</Label>
           <select
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
-            className="flex h-9 w-full rounded-md border border-input bg-background px-3 text-sm"
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm font-medium"
           >
             <option value="">— Sem categoria —</option>
             {categories.map((c) => (
