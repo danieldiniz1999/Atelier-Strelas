@@ -168,32 +168,38 @@ export const adminUploadProductImage = createServerFn({ method: "POST" })
     await assertAdmin(context);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    // Garante que o bucket 'products' exista de forma transparente
-    try {
-      const { data: buckets } = await supabaseAdmin.storage.listBuckets();
-      const exists = buckets?.some((b) => b.name === "products" || b.id === "products");
-      if (!exists) {
-        await supabaseAdmin.storage.createBucket("products", {
-          public: true,
-          fileSizeLimit: 10485760, // 10MB
-          allowedMimeTypes: ["image/jpeg", "image/png", "image/webp", "image/gif", "image/jpg"],
-        });
-      }
-    } catch (bucketErr) {
-      console.warn("[Storage] Bucket check warning:", bucketErr);
-    }
-
-    const ext = data.fileName.split(".").pop() ?? "jpg";
+    const ext = data.fileName.split(".").pop() ?? "webp";
     const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
     const buffer = Buffer.from(data.fileBase64, "base64");
 
-    const { error: uploadError } = await supabaseAdmin.storage
+    let { error: uploadError } = await supabaseAdmin.storage
       .from("products")
       .upload(path, buffer, {
         contentType: data.contentType,
         cacheControl: "31536000",
         upsert: false,
       });
+
+    // Se o bucket não existir, cria e tenta novamente de forma transparente
+    if (uploadError && (uploadError.message?.toLowerCase().includes("bucket") || (uploadError as any).statusCode === 404)) {
+      try {
+        await supabaseAdmin.storage.createBucket("products", {
+          public: true,
+          fileSizeLimit: 10485760, // 10MB
+          allowedMimeTypes: ["image/jpeg", "image/png", "image/webp", "image/gif", "image/jpg"],
+        });
+        const retry = await supabaseAdmin.storage
+          .from("products")
+          .upload(path, buffer, {
+            contentType: data.contentType,
+            cacheControl: "31536000",
+            upsert: false,
+          });
+        uploadError = retry.error;
+      } catch (bucketErr) {
+        console.warn("[Storage] Bucket create retry warning:", bucketErr);
+      }
+    }
 
     if (uploadError) {
       console.error("[Storage] Upload error:", uploadError);

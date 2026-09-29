@@ -508,18 +508,89 @@ function ProductForm({
   const [isFeatured, setIsFeatured] = useState(product?.is_featured ?? false);
   const [isActive, setIsActive] = useState(product?.is_active ?? true);
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
-  function fileToBase64(file: File): Promise<string> {
+  function compressAndOptimizeImage(
+    file: File,
+    maxWidth = 1600,
+    maxHeight = 1600,
+    quality = 0.82
+  ): Promise<{ fileBase64: string; fileName: string; contentType: string }> {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const res = reader.result as string;
-        const base64 = res.split(",")[1] ?? res;
-        resolve(base64);
+      // Se não for imagem comum ou for svg/gif, converte direto
+      if (!file.type.startsWith("image/") || file.type === "image/gif" || file.type === "image/svg+xml") {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const res = reader.result as string;
+          const base64 = res.split(",")[1] ?? res;
+          resolve({ fileBase64: base64, fileName: file.name, contentType: file.type || "image/jpeg" });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        let { width, height } = img;
+
+        // Redimensiona mantendo proporção e alta fidelidade para retina/mobile
+        if (width > maxWidth || height > maxHeight) {
+          if (width / height > maxWidth / maxHeight) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          reject(new Error("Contexto gráfico não disponível."));
+          return;
+        }
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Gera em WebP ultraleve (com fallback para JPEG)
+        let contentType = "image/webp";
+        let dataUrl = canvas.toDataURL("image/webp", quality);
+
+        if (!dataUrl.startsWith("data:image/webp")) {
+          contentType = "image/jpeg";
+          dataUrl = canvas.toDataURL("image/jpeg", quality);
+        }
+
+        const base64 = dataUrl.split(",")[1] ?? dataUrl;
+        const dotIndex = file.name.lastIndexOf(".");
+        const baseName = (dotIndex !== -1 ? file.name.slice(0, dotIndex) : file.name)
+          .replace(/[^a-zA-Z0-9_-]/g, "_")
+          .toLowerCase();
+        const ext = contentType === "image/webp" ? "webp" : "jpg";
+
+        resolve({
+          fileBase64: base64,
+          fileName: `${baseName}.${ext}`,
+          contentType,
+        });
       };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
+
+      img.onerror = (err) => {
+        URL.revokeObjectURL(objectUrl);
+        reject(err);
+      };
+
+      img.src = objectUrl;
     });
   }
 
@@ -533,31 +604,53 @@ function ProductForm({
     }
     const toUpload = list.slice(0, remaining);
     if (list.length > remaining) {
-      toast.message(`Você enviou ${list.length} arquivos, mas só ${remaining} couberam (limite ${MAX_IMAGES}).`);
+      toast.message(`Você selecionou ${list.length} arquivos, mas só ${remaining} couberam (limite ${MAX_IMAGES}).`);
     }
+
     setUploading(true);
+    setUploadProgress(toUpload.length === 1 ? "Otimizando foto..." : `Otimizando 1 de ${toUpload.length}...`);
+
     try {
-      const uploaded: string[] = [];
-      for (const file of toUpload) {
-        const fileBase64 = await fileToBase64(file);
+      // Otimização e upload paralelo instantâneo
+      let done = 0;
+      const uploadTasks = toUpload.map(async (file, idx) => {
+        const optimized = await compressAndOptimizeImage(file);
+        setUploadProgress(
+          toUpload.length === 1
+            ? "Enviando em alta velocidade..."
+            : `Enviando ${idx + 1} de ${toUpload.length}...`
+        );
         const res = await uploadFn({
           data: {
-            fileName: file.name,
-            fileBase64,
-            contentType: file.type || "image/jpeg",
+            fileName: optimized.fileName,
+            fileBase64: optimized.fileBase64,
+            contentType: optimized.contentType,
           },
         });
-        if (res?.url) {
-          uploaded.push(res.url);
-        }
-      }
-      setImages((prev) => [...prev, ...uploaded].slice(0, MAX_IMAGES));
-      toast.success(uploaded.length === 1 ? "Imagem enviada com sucesso!" : `${uploaded.length} imagens enviadas!`);
+        done++;
+        setUploadProgress(
+          done === toUpload.length
+            ? "Concluindo..."
+            : `Enviadas ${done} de ${toUpload.length}...`
+        );
+        return res?.url;
+      });
+
+      const uploaded = await Promise.all(uploadTasks);
+      const validUrls = uploaded.filter((url): url is string => Boolean(url));
+
+      setImages((prev) => [...prev, ...validUrls].slice(0, MAX_IMAGES));
+      toast.success(
+        validUrls.length === 1
+          ? "Imagem otimizada e carregada com sucesso!"
+          : `${validUrls.length} imagens otimizadas e carregadas!`
+      );
     } catch (e: any) {
       console.error("Upload error:", e);
       toast.error(e.message ?? "Falha ao enviar imagem.");
     } finally {
       setUploading(false);
+      setUploadProgress(null);
     }
   }
 
@@ -741,7 +834,12 @@ function ProductForm({
               {uploading ? (
                 <>
                   <Loader2 className="h-7 w-7 animate-spin text-[var(--brand-pink)]" />
-                  <span className="text-sm font-semibold text-foreground/70">Enviando imagens...</span>
+                  <span className="text-sm font-semibold text-foreground/80">
+                    {uploadProgress ?? "Otimizando e enviando imagens..."}
+                  </span>
+                  <span className="text-[11px] text-foreground/50">
+                    Processamento ultrarrápido em segundo plano
+                  </span>
                 </>
               ) : (
                 <>
