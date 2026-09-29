@@ -88,13 +88,13 @@ function CatalogoPage() {
       </section>
 
       {/* FILTROS */}
-      <div className="sticky top-16 z-30 border-b border-border bg-background/90 backdrop-blur">
+      <div className="sticky top-16 sm:top-20 z-30 border-b border-border bg-background/95 backdrop-blur-md">
         <div className="mx-auto max-w-6xl overflow-x-auto px-4 sm:px-6">
           <div className="flex gap-2 py-3">
             <Link
               to="/catalogo"
               search={{}}
-              className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
+              className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold transition-colors ${
                 !categoria
                   ? "bg-brand-gradient text-white shadow"
                   : "bg-white text-foreground/70 hover:text-[var(--brand-pink)]"
@@ -107,7 +107,7 @@ function CatalogoPage() {
                 key={c.id}
                 to="/catalogo"
                 search={{ categoria: c.slug }}
-                className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
+                className={`whitespace-nowrap rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold transition-colors ${
                   categoria === c.slug
                     ? "bg-brand-gradient text-white shadow"
                     : "bg-white text-foreground/70 hover:text-[var(--brand-pink)]"
@@ -121,21 +121,21 @@ function CatalogoPage() {
       </div>
 
       {/* GRID */}
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-8 sm:py-12 sm:px-6">
         {prods.products.length === 0 ? (
           <ScrollReveal>
-            <div className="rounded-2xl border-2 border-dashed border-[var(--brand-salmon)]/40 bg-white p-16 text-center">
-              <div className="mb-3 text-6xl">🎀</div>
-              <p className="font-display text-xl font-semibold text-foreground/70">
+            <div className="rounded-2xl border-2 border-dashed border-[var(--brand-salmon)]/40 bg-white p-12 sm:p-16 text-center">
+              <div className="mb-3 text-5xl sm:text-6xl">🎀</div>
+              <p className="font-display text-lg sm:text-xl font-semibold text-foreground/70">
                 Em breve, novos produtos nesta categoria.
               </p>
-              <p className="mt-2 text-sm text-foreground/55">
+              <p className="mt-2 text-xs sm:text-sm text-foreground/55">
                 Quer encomendar algo personalizado? Fala com a gente no WhatsApp.
               </p>
             </div>
           </ScrollReveal>
         ) : (
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {prods.products.map((p, i) => (
               <ScrollReveal key={p.id} delay={i * 60}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">

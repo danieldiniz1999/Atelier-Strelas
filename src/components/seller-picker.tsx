@@ -47,17 +47,17 @@ export function SellerPickerButton({
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] rounded-2xl sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-center font-display text-2xl text-foreground">
+        <DialogContent className="w-[calc(100%-3rem)] max-w-[330px] sm:max-w-[390px] rounded-3xl p-5 sm:p-6 shadow-2xl">
+          <DialogHeader className="space-y-1">
+            <DialogTitle className="text-center font-display text-lg sm:text-2xl text-foreground">
               Com quem você quer falar?
             </DialogTitle>
-            <DialogDescription className="text-center text-foreground/65">
+            <DialogDescription className="text-center text-xs sm:text-sm text-foreground/65">
               Nossas estrelinhas estão prontinhas para te atender 💕
             </DialogDescription>
           </DialogHeader>
 
-          <div className="mt-2 grid gap-3">
+          <div className="mt-2 grid gap-2.5 sm:gap-3">
             {SELLERS.map((s) => (
               <a
                 key={s.id}
@@ -65,9 +65,9 @@ export function SellerPickerButton({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-4 rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-pink)] hover:shadow-md active:scale-[0.98]"
+                className="flex items-center gap-3 rounded-2xl border-2 border-[var(--brand-salmon)]/30 bg-white p-3 sm:p-3.5 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-pink)] hover:shadow-md active:scale-[0.98]"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-gradient text-lg font-bold text-white shadow-md">
+                <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-gradient text-base sm:text-lg font-bold text-white shadow-sm">
                   {s.photoUrl ? (
                     <img
                       src={s.photoUrl}
@@ -79,18 +79,18 @@ export function SellerPickerButton({
                     s.initials
                   )}
                 </div>
-                <div className="flex-1 text-left">
-                  <div className="font-display text-base font-bold text-foreground">
+                <div className="flex-1 text-left min-w-0">
+                  <div className="font-display text-sm sm:text-base font-bold text-foreground">
                     Falar com {s.name}
                   </div>
-                  <div className="text-xs text-foreground/55">{s.displayPhone}</div>
+                  <div className="text-[11px] sm:text-xs text-foreground/55">{s.displayPhone}</div>
                 </div>
-                <WhatsappIcon className="h-7 w-7 text-[#25D366]" />
+                <WhatsappIcon className="h-6 w-6 sm:h-7 sm:w-7 shrink-0 text-[#25D366]" />
               </a>
             ))}
           </div>
 
-          <p className="mt-2 text-center text-xs text-foreground/50">
+          <p className="mt-1 text-center text-[11px] sm:text-xs text-foreground/50">
             As duas atendem com o mesmo carinho — escolha quem preferir!
           </p>
         </DialogContent>

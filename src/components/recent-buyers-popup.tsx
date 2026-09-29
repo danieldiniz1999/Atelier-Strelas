@@ -60,24 +60,24 @@ export function RecentBuyersPopup() {
   return (
     <div
       aria-live="polite"
-      className={`fixed bottom-5 left-4 z-40 w-[68vw] max-w-[250px] sm:bottom-6 sm:left-6 sm:w-auto sm:max-w-sm transition-all duration-500 ${
+      className={`fixed bottom-4 left-4 z-40 w-auto max-w-[220px] sm:bottom-6 sm:left-6 sm:max-w-xs transition-all duration-500 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >
-      <div className="relative flex items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-black/5 bg-white p-2 pr-6 sm:p-3 sm:pr-8 shadow-xl sm:shadow-2xl shadow-black/10">
-        <div className="flex h-7 w-7 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-pink)]/10 text-[var(--brand-pink)]">
-          <ShoppingBag className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
+      <div className="relative flex items-center gap-2 rounded-2xl border border-black/5 bg-white/95 backdrop-blur-sm p-2 pr-6 sm:p-2.5 sm:pr-7 shadow-lg shadow-black/10">
+        <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-[var(--brand-pink)]/10 text-[var(--brand-pink)]">
+          <ShoppingBag className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="flex items-center gap-1 text-[11px] sm:text-sm font-semibold text-foreground">
+          <p className="flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-foreground leading-tight">
             <span className="truncate">{buyer.name}</span>
-            <span className="text-muted-foreground font-normal truncate">— {buyer.city}/{buyer.state}</span>
+            <span className="text-muted-foreground font-normal truncate">· {buyer.state}</span>
           </p>
-          <p className="mt-0.5 line-clamp-1 sm:line-clamp-2 text-[10px] sm:text-xs text-muted-foreground">
+          <p className="mt-0.5 line-clamp-1 text-[9px] sm:text-[11px] text-muted-foreground leading-tight">
             comprou <span className="font-medium text-foreground">{buyer.product}</span>
           </p>
-          <p className="mt-0.5 sm:mt-1 flex items-center gap-1 text-[9px] sm:text-[11px] text-muted-foreground">
-            <BadgeCheck className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-emerald-500 shrink-0" />
+          <p className="mt-0.5 flex items-center gap-1 text-[8px] sm:text-[10px] text-muted-foreground">
+            <BadgeCheck className="h-2.5 w-2.5 text-emerald-500 shrink-0" />
             <span className="truncate">há {minutes} min · verificada</span>
           </p>
         </div>
@@ -85,7 +85,7 @@ export function RecentBuyersPopup() {
           type="button"
           aria-label="Fechar aviso"
           onClick={() => setClosed(true)}
-          className="absolute right-1 top-1 sm:right-2 sm:top-2 rounded-full p-1 text-muted-foreground hover:bg-black/5 hover:text-foreground"
+          className="absolute right-1 top-1 sm:right-1.5 sm:top-1.5 rounded-full p-1 text-muted-foreground hover:bg-black/5 hover:text-foreground"
         >
           <X className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
         </button>
