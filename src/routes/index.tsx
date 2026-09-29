@@ -132,12 +132,13 @@ function LandingPage() {
           <div className="absolute bottom-0 right-1/3 h-72 w-72 rounded-full bg-[var(--brand-salmon)] opacity-30 blur-3xl" />
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center md:py-24">
-          <div className="text-center md:col-start-1 md:row-start-1 md:text-left">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-12 md:items-center md:gap-12 md:py-20 lg:py-24">
+          {/* TEXTO, BOTÕES E BENEFÍCIOS */}
+          <div className="text-center md:col-span-7 md:text-left">
             <span className="hero-rise inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[var(--brand-pink)] shadow-sm">
               <Sparkles className="h-3.5 w-3.5" /> Lembrancinhas únicas
             </span>
-            <h1 className="hero-rise hero-rise-delay-1 mt-5 font-display text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl md:text-6xl">
+            <h1 className="hero-rise hero-rise-delay-1 mt-5 font-display text-4xl font-extrabold leading-[1.08] text-foreground sm:text-5xl lg:text-6xl">
               A festa do seu filho merece uma{" "}
               <span className="text-brand-gradient">lembrança inesquecível</span>.
             </h1>
@@ -146,25 +147,8 @@ function LandingPage() {
               tema dos sonhos da sua criança. Cada peça nasce do carinho — e vira
               memória que dura pra vida toda.
             </p>
-          </div>
 
-          <div className="hero-rise hero-rise-delay-2 relative order-2 md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:-mt-64 lg:-mt-80">
-            <div className="relative aspect-square w-full max-w-[200px] sm:max-w-xs mx-auto">
-              <div className="absolute inset-0 rotate-3 rounded-[2rem] bg-brand-gradient shadow-2xl" />
-              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2rem] bg-white shadow-xl">
-                <img
-                  src={heroFesta.url}
-                  alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
-                  className="h-full w-full object-cover"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="order-3 md:order-none md:col-start-1 md:row-start-2">
-            <div className="hero-rise hero-rise-delay-3 flex flex-wrap justify-center gap-3 md:justify-start">
+            <div className="hero-rise hero-rise-delay-3 mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
               <SellerPickerButton
                 ariaLabel="Pedir orçamento no WhatsApp"
                 message="Vim pelo site e quero um orçamento para a festa da minha criança! 🎀"
@@ -192,6 +176,22 @@ function LandingPage() {
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 text-[var(--brand-pink)]" />
                 +1500 festas encantadas
+              </div>
+            </div>
+          </div>
+
+          {/* IMAGEM HERO EM DESTAQUE 4K AMPLIADA */}
+          <div className="hero-rise hero-rise-delay-2 relative flex items-center justify-center md:col-span-5">
+            <div className="relative aspect-[4/5] w-full max-w-[360px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-[520px]">
+              <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-brand-gradient shadow-2xl opacity-90 transition-transform hover:rotate-2 duration-300" />
+              <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-4 ring-white/90 transition-transform hover:-rotate-1 duration-300">
+                <img
+                  src={heroFesta.url}
+                  alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
+                  className="h-full w-full object-cover object-center"
+                  fetchPriority="high"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
