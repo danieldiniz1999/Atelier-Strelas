@@ -33,18 +33,18 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
 export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server(
   async ({ next }) => {
     
-    const SUPABASE_URL = process.env['SUPABASE_URL'];
-    const SUPABASE_PUBLISHABLE_KEY = process.env['SUPABASE_PUBLISHABLE_KEY'];
+    const SUPABASE_URL =
+      process.env['SUPABASE_URL'] ||
+      process.env['VITE_SUPABASE_URL'] ||
+      process.env['NEXT_PUBLIC_SUPABASE_URL'] ||
+      "https://syxhnmjmwxtlnsozrnwz.supabase.co";
 
-    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-      const missing = [
-        ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-        ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
-      ];
-      const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Configure them in Vercel Environment Variables.`;
-      console.error(`[Supabase] ${message}`);
-      throw new Error(message);
-    }
+    const SUPABASE_PUBLISHABLE_KEY =
+      process.env['SUPABASE_PUBLISHABLE_KEY'] ||
+      process.env['SUPABASE_ANON_KEY'] ||
+      process.env['VITE_SUPABASE_ANON_KEY'] ||
+      process.env['NEXT_PUBLIC_SUPABASE_ANON_KEY'] ||
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5eGhubWptd3h0bG5zb3pybnd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzOTgxNjEsImV4cCI6MjEwMTk3NDE2MX0.0J5UorG9DpUC5ar6GrO2VmFDoovyRnwHJiIPIo42Cgc";
     
     const request = getRequest();
 
