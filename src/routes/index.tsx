@@ -65,7 +65,16 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: `${BASE_SITE_URL}/` }],
+    links: [
+      { rel: "canonical", href: `${BASE_SITE_URL}/` },
+      {
+        rel: "preload",
+        as: "image",
+        href: "/assets/hero-festa.webp",
+        type: "image/webp",
+        fetchPriority: "high",
+      },
+    ],
   }),
 
   loader: async ({ context }) => {
@@ -185,13 +194,18 @@ function LandingPage() {
             <div className="relative aspect-[4/5] w-full max-w-[360px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-[520px]">
               <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-brand-gradient shadow-2xl opacity-90 transition-transform hover:rotate-2 duration-300" />
               <div className="absolute inset-0 -rotate-2 overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-4 ring-white/90 transition-transform hover:-rotate-1 duration-300">
-                <img
-                  src={heroFesta.url}
-                  alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
-                  className="h-full w-full object-cover object-center"
-                  fetchPriority="high"
-                  decoding="async"
-                />
+                <picture>
+                  <source srcSet="/assets/hero-festa.webp" type="image/webp" />
+                  <img
+                    src={heroFesta.url}
+                    alt="Decoração de festa Atelier Strelas com bolsinhas personalizadas e arco de balões"
+                    className="h-full w-full object-cover object-center"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={520}
+                    height={650}
+                  />
+                </picture>
               </div>
             </div>
           </div>

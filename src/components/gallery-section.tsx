@@ -61,12 +61,18 @@ export function GallerySection() {
                 >
                   <figure className="group overflow-hidden rounded-2xl border border-[var(--brand-salmon)]/30 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-pink)] hover:shadow-lg hover:shadow-[var(--brand-pink)]/15">
                     <div className="aspect-[4/5] overflow-hidden bg-[var(--brand-cream)]/50">
-                      <img
-                        src={p.url}
-                        alt={p.caption}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                      <picture>
+                        <source srcSet={p.url.replace(/\.jpe?g$/, ".webp")} type="image/webp" />
+                        <img
+                          src={p.url}
+                          alt={p.caption}
+                          loading="lazy"
+                          decoding="async"
+                          width={320}
+                          height={400}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </picture>
                     </div>
                   </figure>
                 </CarouselItem>
